@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/drawable/fb_btn.xml" value="0.1649122807017544" />
+        <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/drawable/ic_fb_background.xml" value="0.1649122807017544" />
         <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/drawable/input_bg.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
-        <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/register_activity.xml" value="0.1" />
+        <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/register_activity.xml" value="0.22" />
       </map>
     </option>
   </component>
