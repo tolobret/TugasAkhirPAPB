@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TugasAkhirPAPB">
         <activity
+            android:name=".HalamanKonten"
+            android:exported="true" />
+        <activity
             android:name=".EditProfile"
             android:exported="true" />
         <activity
