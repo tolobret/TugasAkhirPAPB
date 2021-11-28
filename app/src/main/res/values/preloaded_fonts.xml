@@ -4,5 +4,7 @@
         <item>@font/montserrat</item>
         <item>@font/montserrat_subrayada</item>
         <item>@font/montserrat_subrayada_bold</item>
+        <item>@font/overpass_extrabold</item>
+        <item>@font/overpass_semibold</item>
     </array>
 </resources>
