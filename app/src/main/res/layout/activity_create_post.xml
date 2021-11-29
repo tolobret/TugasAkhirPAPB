@@ -108,10 +108,12 @@
 
     <ImageView
         android:id="@+id/img_photos"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:onClick="selectImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_Post"
         app:srcCompat="@drawable/image_icon" />
