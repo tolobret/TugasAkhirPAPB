@@ -116,7 +116,8 @@
         android:onClick="selectImage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_Post"
-        app:srcCompat="@drawable/image_icon" />
+        app:srcCompat="@drawable/image_icon"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/bt_post"
@@ -142,7 +143,7 @@
         app:srcCompat="@drawable/line3" />
 
     <ImageView
-        android:id="@+id/imageView17"
+        android:id="@+id/bt_profile"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginEnd="32dp"
@@ -153,7 +154,7 @@
         app:srcCompat="@drawable/profile_icon" />
 
     <ImageView
-        android:id="@+id/imageView18"
+        android:id="@+id/bt_home"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginStart="36dp"
@@ -164,12 +165,12 @@
         app:srcCompat="@drawable/home_icon" />
 
     <ImageView
-        android:id="@+id/imageView19"
+        android:id="@+id/bt_createPost"
         android:layout_width="35dp"
         android:layout_height="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView17"
-        app:layout_constraintStart_toEndOf="@+id/imageView18"
+        app:layout_constraintEnd_toStartOf="@+id/bt_profile"
+        app:layout_constraintStart_toEndOf="@+id/bt_home"
         app:layout_constraintTop_toBottomOf="@+id/imageView13"
         app:srcCompat="@drawable/post_icon" />
 

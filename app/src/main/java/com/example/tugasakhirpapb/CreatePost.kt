@@ -40,34 +40,32 @@ class CreatePost : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance().getReference()
 
-
         val date: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
+
         btPost.setOnClickListener(){
-            val konten = Konten(
-                textJudul.text.toString(),
-                textKonten.text.toString(),
-                textLocation.text.toString(),
-
-            )
-            database.child("konten").child(textJudul.text.toString()).setValue(konten).addOnSuccessListener {
-                Toast.makeText(this,"Successfully Posted", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener{
-                Toast.makeText(this,"Failed to Post",Toast.LENGTH_SHORT).show()
-            }
-            uplloadFile()
+            uploadKonten()
         }
-
 
     }
 
+    private fun uploadKonten() {
+        val konten = Konten(
+            textJudul.text.toString(),
+            textKonten.text.toString(),
+            textLocation.text.toString(),
+
+            )
+        database.child("konten").child(textJudul.text.toString()).setValue(konten).addOnSuccessListener {
+            Toast.makeText(this,"Successfully Posted", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener{
+            Toast.makeText(this,"Failed to Post",Toast.LENGTH_SHORT).show()
+        }
+        uplloadFile()
+    }
+
     fun selectImage(view: View) {
-//        Intent(Intent.ACTION_GET_CONTENT).also {
-//            it.type = "image/*"
-//            startActivityForResult(it,100)
-//        }
         startFileChooser()
-//        uplloadFile()
     }
 
     private fun uplloadFile() {
@@ -76,7 +74,7 @@ class CreatePost : AppCompatActivity() {
             pd.setTitle("Uploading")
             pd.show()
 
-            var imageRef : StorageReference = FirebaseStorage.getInstance().reference.child("images").child(textJudul.text.toString())
+            var imageRef : StorageReference = FirebaseStorage.getInstance().reference.child("konten_images").child(textJudul.text.toString())
             imageRef.putFile(filePath)
                 .addOnSuccessListener { p0 ->
                     pd.dismiss()
