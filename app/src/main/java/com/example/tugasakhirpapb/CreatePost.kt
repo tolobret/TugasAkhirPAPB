@@ -27,6 +27,7 @@ class CreatePost : AppCompatActivity() {
     lateinit var imgPhoto : ImageView
 
     lateinit var filePath : Uri
+    lateinit var date : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +41,7 @@ class CreatePost : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance().getReference()
 
-        val date: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+        date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
 
         btPost.setOnClickListener(){
@@ -54,7 +55,10 @@ class CreatePost : AppCompatActivity() {
             textJudul.text.toString(),
             textKonten.text.toString(),
             textLocation.text.toString(),
-
+            "",
+            "foto_"+textJudul.text.toString(),
+            0,
+            date
             )
         database.child("konten").child(textJudul.text.toString()).setValue(konten).addOnSuccessListener {
             Toast.makeText(this,"Successfully Posted", Toast.LENGTH_SHORT).show()
@@ -74,7 +78,7 @@ class CreatePost : AppCompatActivity() {
             pd.setTitle("Uploading")
             pd.show()
 
-            var imageRef : StorageReference = FirebaseStorage.getInstance().reference.child("konten_images").child(textJudul.text.toString())
+            var imageRef : StorageReference = FirebaseStorage.getInstance().reference.child("konten_images").child("foto_"+textJudul.text.toString())
             imageRef.putFile(filePath)
                 .addOnSuccessListener { p0 ->
                     pd.dismiss()
