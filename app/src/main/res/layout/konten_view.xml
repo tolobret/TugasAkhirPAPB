@@ -17,21 +17,16 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:cardCornerRadius="12dp"
-                >
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/gambarKonten"
+                android:layout_width="300dp"
+                android:layout_height="180dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_img"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/konten_post">
 
-                <ImageView
-                    android:id="@+id/gambarKonten"
-                    android:layout_width="300dp"
-                    android:layout_height="180dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/rounded_img"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/konten_post" />
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.imageview.ShapeableImageView>
 
             <TextView
                 android:id="@+id/judulKonten"
