@@ -19,7 +19,7 @@
             android:name=".Profile"
             android:exported="true" />
         <activity
-            android:name=".CreatePost"
+            android:name=".RecyclerViewActivity"
             android:exported="true" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -31,7 +31,7 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".RecyclerViewActivity"
+            android:name=".CreatePost"
             android:exported="true" />
         <activity
             android:name=".Register"
