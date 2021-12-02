@@ -21,11 +21,8 @@ class kontenAdapter (private val listKonten : ArrayList<Konten>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = listKonten[position]
-        val img = currentItem.foto?.toInt()
         holder.judul.text = currentItem.judul
-        if (img != null) {
-            holder.foto.setImageResource(img)
-        }
+
     }
 
     override fun getItemCount(): Int {

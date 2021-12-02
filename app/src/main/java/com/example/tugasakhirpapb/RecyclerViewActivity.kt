@@ -1,6 +1,10 @@
 package com.example.tugasakhirpapb
 
+import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +36,7 @@ class RecyclerViewActivity : AppCompatActivity() {
     }
 
     private fun getKonten() {
-        database = FirebaseDatabase.getInstance().getReference("konten")
+        database = FirebaseDatabase.getInstance().getReference("Konten")
         database.addValueEventListener(object : ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -48,8 +52,9 @@ class RecyclerViewActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+
             }
 
         })
