@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tugasakhirpapb.Model.userData
@@ -31,6 +32,7 @@ class Register : AppCompatActivity(){
         val inputPass : EditText = findViewById(R.id.passInput)
         val confirmPass : EditText = findViewById(R.id.confirmPass)
         val inputEmail : EditText = findViewById(R.id.emailInput)
+        val loginBtn : TextView = findViewById(R.id.login)
 
         btnSignUp.setOnClickListener{
             val email = inputEmail.text.toString()
@@ -81,6 +83,11 @@ class Register : AppCompatActivity(){
                     ).show()
                 }
             }
+        }
+
+        loginBtn.setOnClickListener {
+            val intent = Intent (this, Login::class.java)
+            startActivity(intent)
         }
     }
 
