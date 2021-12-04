@@ -27,7 +27,6 @@ class kontenAdapter (private val listKonten : ArrayList<Konten>) :
 
     override fun getItemCount(): Int {
 
-
         return listKonten.size
     }
 
