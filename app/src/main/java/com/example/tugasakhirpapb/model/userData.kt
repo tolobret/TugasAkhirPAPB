@@ -1,4 +1,4 @@
-package com.example.tugasakhirpapb.Model
+package com.example.tugasakhirpapb.model
 
 import java.sql.Blob
 import java.util.*

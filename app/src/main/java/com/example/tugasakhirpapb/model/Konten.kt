@@ -1,7 +1,4 @@
-package com.example.tugasakhirpapb.Model
-
-import java.sql.Blob
-import java.sql.Date
+package com.example.tugasakhirpapb.model
 
 
 data class Konten(val judul : String,

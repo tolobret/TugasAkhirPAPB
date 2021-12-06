@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tugasakhirpapb.Model.Konten
+import com.example.tugasakhirpapb.model.Konten
 import com.example.tugasakhirpapb.databinding.KontenViewBinding
 import com.example.tugasakhirpapb.R
 
@@ -28,7 +28,7 @@ class KontenAdapter(var c: Context, var kontenList : ArrayList<Konten>)
 
     override fun onBindViewHolder(holder: KontenViewHolder, position: Int) {
         holder.v.isKonten = kontenList[position]
-
+        
 
     }
 
@@ -37,8 +37,4 @@ class KontenAdapter(var c: Context, var kontenList : ArrayList<Konten>)
         return kontenList.size
     }
 
-    class MyViewHolder (itemView : View) : RecyclerView.ViewHolder(itemView){
-        val judul : TextView = itemView.findViewById(R.id.judulKonten)
-        val foto : ShapeableImageView = itemView.findViewById(R.id.gambarKonten)
-    }
 }
