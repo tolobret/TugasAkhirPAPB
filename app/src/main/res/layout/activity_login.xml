@@ -62,7 +62,7 @@
         android:background="@drawable/form_login"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:paddingLeft="20dp"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
