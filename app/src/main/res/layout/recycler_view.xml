@@ -86,11 +86,7 @@
             android:layout_height="448dp"
             android:layout_marginTop="16dp"
             android:paddingLeft="32dp"
-            android:paddingRight="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
+            android:paddingRight="32dp" />
     </LinearLayout>
 
 
