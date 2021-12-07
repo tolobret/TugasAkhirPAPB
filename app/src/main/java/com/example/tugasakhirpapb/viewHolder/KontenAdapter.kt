@@ -28,7 +28,6 @@ class KontenAdapter(var c: Context, var kontenList : ArrayList<Konten>)
 
     override fun onBindViewHolder(holder: KontenViewHolder, position: Int) {
         holder.v.isKonten = kontenList[position]
-        
 
     }
 
