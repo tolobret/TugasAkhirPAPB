@@ -37,6 +37,7 @@ class RecyclerViewActivity : AppCompatActivity() {
     var imgName: String = ""
     lateinit var imgKonten : ImageView
     lateinit var judul : TextView
+    private lateinit var kontenArrayList : ArrayList<Konten>
 
     private val storageReference = FirebaseStorage.getInstance().getReference("konten_images")
     private lateinit var binding: RecyclerViewBinding
@@ -46,7 +47,8 @@ class RecyclerViewActivity : AppCompatActivity() {
 
         binding = RecyclerViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        kontenArrayList = arrayListOf<Konten>()
+        getUserData()
         getAllImage()
     }
 
@@ -60,7 +62,7 @@ class RecyclerViewActivity : AppCompatActivity() {
             }
 
             withContext(Dispatchers.Main) {
-                val animalAdapter = KontenAdapter(imageUrls)
+                val animalAdapter = KontenAdapter(imageUrls,kontenArrayList)
 //                if (animalAdapter.itemCount == 0) {
 //                    binding.textView8.text = View.VISIBLE
 //                }
@@ -76,6 +78,38 @@ class RecyclerViewActivity : AppCompatActivity() {
                 Toast.makeText(this@RecyclerViewActivity, e.message, Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+
+    private fun getUserData() {
+
+        database = FirebaseDatabase.getInstance().getReference("konten")
+
+        database.addValueEventListener(object : ValueEventListener{
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if (snapshot.exists()){
+
+                    for (userSnapshot in snapshot.children){
+
+
+                        val konten = userSnapshot.getValue(Konten::class.java)
+                        kontenArrayList.add(konten!!)
+
+                    }
+
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+
+        })
+
     }
 
 }

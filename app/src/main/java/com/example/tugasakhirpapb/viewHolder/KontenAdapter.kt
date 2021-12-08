@@ -14,9 +14,13 @@ import com.example.tugasakhirpapb.R
 
 import com.google.android.material.imageview.ShapeableImageView
 
-class KontenAdapter(private val ImageUrl: List<String>) : RecyclerView.Adapter<KontenAdapter.ViewHolder>() {
+class KontenAdapter(private val ImageUrl: List<String>,
+                    private val kontenList : ArrayList<Konten>
+                    ) : RecyclerView.Adapter<KontenAdapter.ViewHolder>() {
+
 
     inner class ViewHolder(private val binding: KontenViewBinding) : RecyclerView.ViewHolder(binding.root) {
+        val judul : TextView = itemView.findViewById(R.id.textJudul)
         fun bind(url: String) {
             with(binding) {
                 imageKonten.load(url){
@@ -26,6 +30,7 @@ class KontenAdapter(private val ImageUrl: List<String>) : RecyclerView.Adapter<K
                 }
             }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,6 +46,8 @@ class KontenAdapter(private val ImageUrl: List<String>) : RecyclerView.Adapter<K
         ImageUrl[position].let {
             holder.bind(it)
         }
+        val currentitem = kontenList[position]
+        holder.judul.text =currentitem.judul
     }
 
     override fun getItemCount(): Int {
