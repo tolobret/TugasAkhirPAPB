@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -15,6 +17,7 @@ import com.example.tugasakhirpapb.databinding.ActivityHalamanKontenBinding
 import com.example.tugasakhirpapb.databinding.RecyclerViewBinding
 import com.example.tugasakhirpapb.model.Konten
 import com.example.tugasakhirpapb.viewHolder.KontenAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -50,6 +53,35 @@ class RecyclerViewActivity : AppCompatActivity() {
         kontenArrayList = arrayListOf<Konten>()
         getUserData()
         getAllImage()
+
+        val bottomNav = findViewById<BottomNavigationView
+                >(R.id.bottom_navigatin_view)
+        val navController = findNavController(R.id.nav_fragment)
+        bottomNav.setupWithNavController(navController
+        )
+
+        bottomNav.setOnNavigationItemReselectedListener {
+            when (it.itemId) {
+                R.id.recyclerViewActivity -> {
+                    setContent("RecyclerView")
+                    true
+                }
+                R.id.createPost -> {
+                    setContent("CreatePost")
+                    true
+                }
+                R.id.profile -> {
+                    setContent("Profile")
+                    true
+                }
+                else -> false
+            }
+        }
+
+    }
+
+    private fun setContent(s : String) {
+        setTitle(s)
     }
 
     private fun getAllImage() = CoroutineScope(Dispatchers.IO).launch {
