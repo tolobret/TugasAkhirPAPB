@@ -11,7 +11,8 @@
         android:theme="@style/Theme.TugasAkhirPAPB">
         <activity
             android:name=".HalamanKonten"
-            android:exported="true" />
+            android:exported="true" >
+        </activity>
         <activity
             android:name=".EditProfile"
             android:exported="true" />
@@ -21,14 +22,14 @@
         <activity
             android:name=".RecyclerViewActivity"
             android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Login"
             android:exported="true" />
         <activity
             android:name=".CreatePost"
