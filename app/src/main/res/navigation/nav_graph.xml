@@ -3,10 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/halamanKonten">
+    app:startDestination="@id/createPost">
     <activity
-        android:id="@+id/halamanKonten"
-        android:name="com.example.tugasakhirpapb.HalamanKonten"
-        android:label="activity_halaman_konten"
-        tools:layout="@layout/activity_halaman_konten" />
+        android:id="@+id/recyclerViewActivity"
+        android:name="com.example.tugasakhirpapb.RecyclerViewActivity"
+        android:label="RecyclerViewActivity" />
+    <activity
+        android:id="@+id/profile"
+        android:name="com.example.tugasakhirpapb.Profile"
+        android:label="activity_profile"
+        tools:layout="@layout/activity_profile" />
+    <activity
+        android:id="@+id/createPost"
+        android:name="com.example.tugasakhirpapb.CreatePost"
+        android:label="activity_create_post"
+        tools:layout="@layout/activity_create_post" />
 </navigation>
