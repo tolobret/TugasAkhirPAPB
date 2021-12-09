@@ -7,11 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.tugasakhirpapb.R
 
-class ProfileFragment : Fragment(R.layout.activity_profile) {
+class CreateFragment : Fragment(R.layout.activity_create_post) {
 
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
-//
 //
 //    }
 //
@@ -20,7 +19,7 @@ class ProfileFragment : Fragment(R.layout.activity_profile) {
 //        savedInstanceState: Bundle?
 //    ): View? {
 //        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_profile, container, false)
+//        return inflater.inflate(R.layout.fragment_create, container, false)
 //    }
 
 
