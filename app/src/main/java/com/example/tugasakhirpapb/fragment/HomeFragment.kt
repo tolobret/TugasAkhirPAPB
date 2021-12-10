@@ -93,7 +93,6 @@ class HomeFragment : Fragment(R.layout.recycler_view) {
 
                     for (userSnapshot in snapshot.children){
 
-
                         val konten = userSnapshot.getValue(Konten::class.java)
                         kontenArrayList.add(konten!!)
 
