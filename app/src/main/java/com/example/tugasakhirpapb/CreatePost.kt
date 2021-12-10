@@ -38,7 +38,6 @@ class CreatePost : AppCompatActivity() {
         textLocation = findViewById(R.id.text_Location)
         btPost = findViewById(R.id.bt_post)
         imgPhoto = findViewById(R.id.img_photos)
-        btHome = findViewById(R.id.bt_home)
 
         database = FirebaseDatabase.getInstance().getReference()
 

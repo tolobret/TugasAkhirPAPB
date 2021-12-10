@@ -62,7 +62,6 @@ class HalamanKonten : AppCompatActivity() {
         textKonten = findViewById(R.id.text_konten)
         textLokasi = findViewById(R.id.text_lokasi)
         textLike = findViewById(R.id.text_like)
-        imgCreatePost = findViewById(R.id.bt_createPost)
         imgKonten = findViewById(R.id.img_konten)
         btLike = findViewById(R.id.bt_like)
 
@@ -126,13 +125,14 @@ class HalamanKonten : AppCompatActivity() {
             val maxDownloadSize = 5L * 1024 * 1024
             val bytes = storageReference.child(foto).getBytes(maxDownloadSize).await()
             val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-
+            binding.progressBar.visibility = View.VISIBLE
             withContext(Dispatchers.Main) {
                 binding.imgKonten.load(bitmap){
                     crossfade(true)
                     crossfade(500)
                     transformations(RoundedCornersTransformation(10F))
                 }
+                binding.progressBar.visibility = View.GONE
 
             }
         } catch(e: Exception) {
