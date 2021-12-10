@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/fotoProfile"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginTop="20dp"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:srcCompat="@drawable/ellipse_20" />
 
-    <TextView
+    <EditText
         android:id="@+id/namaAkun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
         android:text="San Francisco, CA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/fotoProfile" />
 
     <EditText
         android:id="@+id/editUsername"
@@ -78,7 +78,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/fotoProfile" />
 
     <TextView
         android:id="@+id/textView14"
@@ -106,7 +106,8 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/editUsername"
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/textView15"
@@ -170,7 +171,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="7dp"
-        android:fontFamily="@font/montserrat"
         android:text="Date of birth"
         app:layout_constraintBottom_toBottomOf="@+id/editTgl"
         app:layout_constraintStart_toStartOf="@+id/editTgl"
@@ -198,7 +198,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="7dp"
-        android:fontFamily="@font/montserrat"
         android:text="Address"
         app:layout_constraintBottom_toBottomOf="@+id/editAlamat"
         app:layout_constraintStart_toStartOf="@+id/editAlamat"
@@ -226,7 +225,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="7dp"
-        android:fontFamily="@font/montserrat"
         android:text="Password"
         app:layout_constraintBottom_toBottomOf="@+id/editPw"
         app:layout_constraintStart_toStartOf="@+id/editPw"

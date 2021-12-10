@@ -1,13 +1,13 @@
 package com.example.tugasakhirpapb.model
 
-import java.sql.Blob
-import java.util.*
-
-data class userData (val nama : String,
-                     val email : String,
-                     val password : String,
-                     val tglLahir : Date? = null,
-                     val alamat : String? = null,
-                     val fotoProfil : Blob? = null
+data class userData(
+    val akunUser: String,
+    val nama: String,
+    val email: String,
+    val password: String,
+    val tglLahir: String? = null,
+    val alamat: String? = null,
+    val nomor: String? = null,
+    val fotoProfil: String? = null
                      ) {
 }
