@@ -3,6 +3,7 @@ package com.example.tugasakhirpapb
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -62,13 +63,13 @@ class HalamanKonten : AppCompatActivity() {
         textKonten = findViewById(R.id.text_konten)
         textLokasi = findViewById(R.id.text_lokasi)
         textLike = findViewById(R.id.text_like)
-        imgCreatePost = findViewById(R.id.bt_createPost)
         imgKonten = findViewById(R.id.img_konten)
         btLike = findViewById(R.id.bt_like)
 
 
         val bundle : Bundle?=intent.extras
         val judul = bundle!!.getString("judul").toString()
+
 
 
         database.child("konten").child(judul).get().addOnSuccessListener {
@@ -126,13 +127,14 @@ class HalamanKonten : AppCompatActivity() {
             val maxDownloadSize = 5L * 1024 * 1024
             val bytes = storageReference.child(foto).getBytes(maxDownloadSize).await()
             val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-
+            binding.progressBar.visibility = View.VISIBLE
             withContext(Dispatchers.Main) {
                 binding.imgKonten.load(bitmap){
                     crossfade(true)
                     crossfade(500)
                     transformations(RoundedCornersTransformation(10F))
                 }
+                binding.progressBar.visibility = View.GONE
 
             }
         } catch(e: Exception) {
@@ -152,8 +154,10 @@ class HalamanKonten : AppCompatActivity() {
         }
     }
 
-    fun intentCreate(view: View){
-        val intent= Intent(this,CreatePost::class.java)
-        startActivity(intent)
+    fun intentMaps(view: View){
+        val gmmIntentUri = Uri.parse("geo:0,0?q=${textLokasi.text.toString()}")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        startActivity(mapIntent)
     }
 }

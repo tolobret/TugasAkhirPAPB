@@ -65,14 +65,17 @@ class HomeFragment : Fragment(R.layout.recycler_view) {
 
             withContext(Dispatchers.Main) {
                 val kontenAdapter = KontenAdapter(imageUrls,kontenArrayList)
-//                if (animalAdapter.itemCount == 0) {
-//                    binding.textView8.text = View.VISIBLE
-//                }
+                if (kontenAdapter.itemCount == 0) {
+                    binding.progressBar2.visibility = View.VISIBLE
+                }
+
 
                 binding.recyclerView.apply {
                     adapter = kontenAdapter
                     layoutManager = LinearLayoutManager(context)
                 }
+
+                binding.progressBar2.visibility = View.GONE
                 kontenAdapter.setOnItemClickListener(object : KontenAdapter.onItemClickListener{
                     override fun onItemClick(position: Int) {
 //                        Toast.makeText(this@RecyclerViewActivity,"Clicked No : $position",Toast.LENGTH_LONG).show()
