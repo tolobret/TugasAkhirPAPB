@@ -3,6 +3,7 @@ package com.example.tugasakhirpapb
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -68,6 +69,7 @@ class HalamanKonten : AppCompatActivity() {
 
         val bundle : Bundle?=intent.extras
         val judul = bundle!!.getString("judul").toString()
+
 
 
         database.child("konten").child(judul).get().addOnSuccessListener {
@@ -152,8 +154,10 @@ class HalamanKonten : AppCompatActivity() {
         }
     }
 
-    fun intentCreate(view: View){
-        val intent= Intent(this,CreatePost::class.java)
-        startActivity(intent)
+    fun intentMaps(view: View){
+        val gmmIntentUri = Uri.parse("geo:0,0?q=${textLokasi.text.toString()}")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        startActivity(mapIntent)
     }
 }
