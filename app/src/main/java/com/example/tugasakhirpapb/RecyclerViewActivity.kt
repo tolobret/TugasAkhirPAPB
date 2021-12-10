@@ -30,38 +30,17 @@ class RecyclerViewActivity : AppCompatActivity() {
     private val storageReference = FirebaseStorage.getInstance().getReference("konten_images")
     private lateinit var binding: RecyclerViewBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?   ) {
         super.onCreate(savedInstanceState)
         binding = RecyclerViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        val homeFragment = HomeFragment()
-//        val profileFragment = ProfileFragment()
-//        val createPostFragment = CreateFragment()
-//        var bottomNav : BottomNavigationView = findViewById(R.id.bottom_navigation_view)
 
         kontenArrayList = arrayListOf<Konten>()
         getUserData()
         getAllImage()
 
-
-//        bottomNav.setOnItemSelectedListener { item ->
-//            when(item.itemId){
-//                R.id.homeFragment -> replaceFragment(homeFragment)
-//                R.id.profileFragment -> replaceFragment(profileFragment)
-//                R.id.createFragment -> replaceFragment(createPostFragment)
-//            }
-//            true
-//        }
     }
 
-    private fun replaceFragment(fragment : Fragment){
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_container, fragment)
-            commit()
-
-        }
-    }
 
     private fun getAllImage() = CoroutineScope(Dispatchers.IO).launch {
         try {

@@ -9,9 +9,9 @@
     <item
         android:id="@+id/createFragment"
         android:title="CreatePost"
-        android:icon="@drawable/ic_baseline_person"/>
+        android:icon="@drawable/ic_baseline_create"/>
     <item
         android:id="@+id/profileFragment"
         android:title="Profile"
-        android:icon="@drawable/ic_baseline_create"/>
+        android:icon="@drawable/ic_baseline_person"/>
 </menu>
