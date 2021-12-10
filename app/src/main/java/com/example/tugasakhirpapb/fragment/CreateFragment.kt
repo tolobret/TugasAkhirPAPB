@@ -9,10 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import com.example.tugasakhirpapb.R
 import com.example.tugasakhirpapb.model.Konten
 import com.google.firebase.database.DatabaseReference
@@ -34,10 +31,11 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
     lateinit var textKonten : EditText
     lateinit var textLocation : EditText
     lateinit var btPost : Button
-    lateinit var imgPhoto : ImageView
 
     lateinit var filePath : Uri
     lateinit var date : String
+
+    private lateinit var btImage : ImageButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +48,7 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
         textKonten = view.findViewById(R.id.text_Post)
         textLocation = view.findViewById(R.id.text_Location)
         btPost = view.findViewById(R.id.bt_post)
-        imgPhoto = view.findViewById(R.id.img_photos)
+        btImage = view.findViewById(R.id.img_photos)
 
         database = FirebaseDatabase.getInstance().getReference()
 
@@ -61,7 +59,14 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
             uploadKonten()
         }
 
+        btImage.setOnClickListener(){
+            startFileChooser()
+        }
+
+
         return view
+
+
 
     }
 

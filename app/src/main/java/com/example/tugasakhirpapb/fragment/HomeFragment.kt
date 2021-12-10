@@ -1,14 +1,17 @@
 package com.example.tugasakhirpapb.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tugasakhirpapb.HalamanKonten
 import com.example.tugasakhirpapb.R
 import com.example.tugasakhirpapb.RecyclerViewActivity
 import com.example.tugasakhirpapb.databinding.RecyclerViewBinding
@@ -31,6 +34,7 @@ class HomeFragment : Fragment(R.layout.recycler_view) {
 
     private lateinit var database : DatabaseReference
     private lateinit var kontenArrayList : ArrayList<Konten>
+
 
     private val storageReference = FirebaseStorage.getInstance().getReference("konten_images")
     private lateinit var binding: RecyclerViewBinding
@@ -60,15 +64,24 @@ class HomeFragment : Fragment(R.layout.recycler_view) {
             }
 
             withContext(Dispatchers.Main) {
-                val animalAdapter = KontenAdapter(imageUrls,kontenArrayList)
+                val kontenAdapter = KontenAdapter(imageUrls,kontenArrayList)
 //                if (animalAdapter.itemCount == 0) {
 //                    binding.textView8.text = View.VISIBLE
 //                }
 
                 binding.recyclerView.apply {
-                    adapter = animalAdapter
+                    adapter = kontenAdapter
                     layoutManager = LinearLayoutManager(context)
                 }
+                kontenAdapter.setOnItemClickListener(object : KontenAdapter.onItemClickListener{
+                    override fun onItemClick(position: Int) {
+//                        Toast.makeText(this@RecyclerViewActivity,"Clicked No : $position",Toast.LENGTH_LONG).show()
+                        val intent = Intent(context,HalamanKonten::class.java)
+                        intent.putExtra("judul",kontenArrayList[position].judul)
+                        startActivity(intent)
+                    }
+
+                })
             }
         } catch(e: Exception) {
             withContext(Dispatchers.Main) {

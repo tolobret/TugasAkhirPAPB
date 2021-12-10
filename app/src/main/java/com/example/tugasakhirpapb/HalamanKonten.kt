@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -36,12 +37,15 @@ class HalamanKonten : AppCompatActivity() {
     lateinit var textLokasi : TextView
     lateinit var textLike : TextView
     lateinit var imgCreatePost : ImageView
+    lateinit var btLike : Button
      var imgName: String = ""
     lateinit var imgKonten : ImageView
     private lateinit var auth: FirebaseAuth
     private val storageReference = FirebaseStorage.getInstance().getReference("konten_images")
+    var like :Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         auth = Firebase.auth
         val currentUser = auth.currentUser
@@ -52,20 +56,29 @@ class HalamanKonten : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference()
 
 
+        var clicked : Boolean = false
+
         textJudul = findViewById(R.id.text_judul)
         textKonten = findViewById(R.id.text_konten)
         textLokasi = findViewById(R.id.text_lokasi)
         textLike = findViewById(R.id.text_like)
         imgCreatePost = findViewById(R.id.bt_createPost)
         imgKonten = findViewById(R.id.img_konten)
+        btLike = findViewById(R.id.bt_like)
 
-        database.child("konten").child("judul5").get().addOnSuccessListener {
+
+        val bundle : Bundle?=intent.extras
+        val judul = bundle!!.getString("judul").toString()
+
+
+        database.child("konten").child(judul).get().addOnSuccessListener {
             imgName ="${it.child("foto").value}"
             downloadImage(imgName)
             textJudul.text="${it.child("judul").value}"
             textKonten.text="${it.child("konten_cerita").value}"
             textLokasi.text="${it.child("location").value}"
             textLike.text="${it.child("like_count").value}"
+            like = "${it.child("like_count").value}".toInt()
 
         }.addOnFailureListener{
             Toast.makeText(this,"Failed to Get Data", Toast.LENGTH_SHORT).show()
@@ -82,6 +95,28 @@ class HalamanKonten : AppCompatActivity() {
 //            Toast.makeText(applicationContext,exception.localizedMessage, Toast.LENGTH_LONG).show()
 //        }
 
+        btLike.setOnClickListener(){
+
+            if (!clicked){
+                like+=1
+                database = FirebaseDatabase.getInstance().getReference()
+                var like = mapOf<String,Int>(
+                   "like_count" to like
+                )
+
+                database.child("konten").child(judul).updateChildren(like).addOnSuccessListener {
+                    Toast.makeText(this,"liked",Toast.LENGTH_SHORT).show()
+                    clicked=true
+                    database.child("konten").child(judul).get().addOnSuccessListener {
+                        textLike.text="${it.child("like_count").value}"
+
+                    }
+                }
+
+            }else{
+                Toast.makeText(this,"You've Liked This Post",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
     /**
      * Fungsi download gambar dari firebase storage

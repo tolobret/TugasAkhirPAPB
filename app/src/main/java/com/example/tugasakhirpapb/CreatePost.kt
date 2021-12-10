@@ -23,6 +23,7 @@ class CreatePost : AppCompatActivity() {
     lateinit var textKonten : EditText
     lateinit var textLocation : EditText
     lateinit var btPost : Button
+    lateinit var btHome : ImageView
     lateinit var imgPhoto : ImageView
 
     lateinit var filePath : Uri
@@ -37,6 +38,7 @@ class CreatePost : AppCompatActivity() {
         textLocation = findViewById(R.id.text_Location)
         btPost = findViewById(R.id.bt_post)
         imgPhoto = findViewById(R.id.img_photos)
+        btHome = findViewById(R.id.bt_home)
 
         database = FirebaseDatabase.getInstance().getReference()
 
@@ -45,6 +47,7 @@ class CreatePost : AppCompatActivity() {
 
         btPost.setOnClickListener(){
             uploadKonten()
+
         }
 
     }
@@ -67,8 +70,13 @@ class CreatePost : AppCompatActivity() {
         uplloadFile()
     }
 
-    fun selectImage(view: View) {
-        startFileChooser()
+//    fun selectImage(view: View) {
+//        startFileChooser()
+//    }
+
+    fun buttonHome(view: View) {
+        val intent = Intent(this,RecyclerViewActivity::class.java)
+        startActivity(intent)
     }
 
     private fun uplloadFile() {
@@ -82,6 +90,8 @@ class CreatePost : AppCompatActivity() {
                 .addOnSuccessListener { p0 ->
                     pd.dismiss()
                     Toast.makeText(applicationContext,"File Uploaded",Toast.LENGTH_LONG).show()
+                    val intent = Intent(this,RecyclerViewActivity::class.java)
+                    startActivity(intent)
                 }
                 .addOnFailureListener {p0 ->
                     pd.dismiss()
