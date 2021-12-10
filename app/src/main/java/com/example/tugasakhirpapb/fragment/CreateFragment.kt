@@ -1,13 +1,16 @@
-package com.example.tugasakhirpapb
+package com.example.tugasakhirpapb.fragment
 
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
+import com.example.tugasakhirpapb.R
 import com.example.tugasakhirpapb.model.Konten
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -16,29 +19,36 @@ import com.google.firebase.storage.StorageReference
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CreatePost : AppCompatActivity() {
+class CreateFragment : Fragment(R.layout.activity_create_post) {
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//
+//    }
 
     private lateinit var database: DatabaseReference
     lateinit var textJudul : EditText
     lateinit var textKonten : EditText
     lateinit var textLocation : EditText
     lateinit var btPost : Button
-    lateinit var btHome : ImageView
-    lateinit var imgPhoto : ImageView
 
     lateinit var filePath : Uri
     lateinit var date : String
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_post)
+    private lateinit var btImage : ImageButton
 
-        textJudul = findViewById(R.id.text_Judul)
-        textKonten = findViewById(R.id.text_Post)
-        textLocation = findViewById(R.id.text_Location)
-        btPost = findViewById(R.id.bt_post)
-        imgPhoto = findViewById(R.id.img_photos)
-        btHome = findViewById(R.id.bt_home)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.activity_create_post, container, false)
+
+        textJudul = view.findViewById(R.id.text_Judul)
+        textKonten = view.findViewById(R.id.text_Post)
+        textLocation = view.findViewById(R.id.text_Location)
+        btPost = view.findViewById(R.id.bt_post)
+        btImage = view.findViewById(R.id.img_photos)
 
         database = FirebaseDatabase.getInstance().getReference()
 
@@ -47,8 +57,16 @@ class CreatePost : AppCompatActivity() {
 
         btPost.setOnClickListener(){
             uploadKonten()
-
         }
+
+        btImage.setOnClickListener(){
+            startFileChooser()
+        }
+
+
+        return view
+
+
 
     }
 
@@ -61,27 +79,22 @@ class CreatePost : AppCompatActivity() {
             "foto_"+textJudul.text.toString(),
             0,
             date
-            )
+        )
         database.child("konten").child(textJudul.text.toString()).setValue(konten).addOnSuccessListener {
-            Toast.makeText(this,"Successfully Posted", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"Successfully Posted", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener{
-            Toast.makeText(this,"Failed to Post",Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,"Failed to Post", Toast.LENGTH_SHORT).show()
         }
         uplloadFile()
     }
 
-//    fun selectImage(view: View) {
-//        startFileChooser()
-//    }
-
-    fun buttonHome(view: View) {
-        val intent = Intent(this,RecyclerViewActivity::class.java)
-        startActivity(intent)
+    fun selectImage(view: View) {
+        startFileChooser()
     }
 
     private fun uplloadFile() {
         if (filePath!=null){
-            var pd = ProgressDialog(this)
+            var pd = ProgressDialog(context)
             pd.setTitle("Uploading")
             pd.show()
 
@@ -89,13 +102,11 @@ class CreatePost : AppCompatActivity() {
             imageRef.putFile(filePath)
                 .addOnSuccessListener { p0 ->
                     pd.dismiss()
-                    Toast.makeText(applicationContext,"File Uploaded",Toast.LENGTH_LONG).show()
-                    val intent = Intent(this,RecyclerViewActivity::class.java)
-                    startActivity(intent)
+                    Toast.makeText(context?.applicationContext,"File Uploaded", Toast.LENGTH_LONG).show()
                 }
                 .addOnFailureListener {p0 ->
                     pd.dismiss()
-                    Toast.makeText(applicationContext,p0.message,Toast.LENGTH_LONG).show()
+                    Toast.makeText(context?.applicationContext,p0.message, Toast.LENGTH_LONG).show()
                 }.addOnProgressListener { p0 ->
                     var progress : Double = (100.0 * p0.bytesTransferred) / p0.totalByteCount
                     pd.setMessage("Uploaded ${progress.toInt()}%")

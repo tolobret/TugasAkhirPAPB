@@ -18,8 +18,20 @@ class KontenAdapter(private val ImageUrl: List<String>,
                     private val kontenList : ArrayList<Konten>
                     ) : RecyclerView.Adapter<KontenAdapter.ViewHolder>() {
 
+    private lateinit var mListener : onItemClickListener
 
-    inner class ViewHolder(private val binding: KontenViewBinding) : RecyclerView.ViewHolder(binding.root) {
+    interface onItemClickListener{
+
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+
+        mListener = listener
+
+    }
+
+    inner class ViewHolder(private val binding: KontenViewBinding, listener: onItemClickListener) : RecyclerView.ViewHolder(binding.root) {
         val judul : TextView = itemView.findViewById(R.id.textJudul)
         fun bind(url: String) {
             with(binding) {
@@ -30,7 +42,11 @@ class KontenAdapter(private val ImageUrl: List<String>,
                 }
             }
         }
-
+        init {
+            itemView.setOnClickListener{
+                listener.onItemClick(adapterPosition)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -39,7 +55,7 @@ class KontenAdapter(private val ImageUrl: List<String>,
             parent,
             false
         )
-        return ViewHolder(binding)
+        return ViewHolder(binding,mListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

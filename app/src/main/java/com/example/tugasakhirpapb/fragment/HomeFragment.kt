@@ -1,60 +1,129 @@
 package com.example.tugasakhirpapb.fragment
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil.setContentView
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tugasakhirpapb.HalamanKonten
 import com.example.tugasakhirpapb.R
+import com.example.tugasakhirpapb.RecyclerViewActivity
+import com.example.tugasakhirpapb.databinding.RecyclerViewBinding
+import com.example.tugasakhirpapb.model.Konten
+import com.example.tugasakhirpapb.viewHolder.KontenAdapter
+import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class HomeFragment : Fragment(R.layout.recycler_view) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//    }
+
+    private lateinit var database : DatabaseReference
+    private lateinit var kontenArrayList : ArrayList<Konten>
+
+
+    private val storageReference = FirebaseStorage.getInstance().getReference("konten_images")
+    private lateinit var binding: RecyclerViewBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.recycler_view, container, false)
+        binding = RecyclerViewBinding.inflate(layoutInflater)
+        val view =  inflater.inflate(R.layout.recycler_view, container, false)
+
+        kontenArrayList = arrayListOf<Konten>()
+        getUserData()
+        getAllImage()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun getAllImage() = CoroutineScope(Dispatchers.IO).launch {
+        try {
+            val images = storageReference.listAll().await()
+            val imageUrls = mutableListOf<String>()
+            for(image in images.items) {
+                val url = image.downloadUrl.await()
+                imageUrls.add(url.toString())
             }
+
+            withContext(Dispatchers.Main) {
+                val kontenAdapter = KontenAdapter(imageUrls,kontenArrayList)
+//                if (animalAdapter.itemCount == 0) {
+//                    binding.textView8.text = View.VISIBLE
+//                }
+
+                binding.recyclerView.apply {
+                    adapter = kontenAdapter
+                    layoutManager = LinearLayoutManager(context)
+                }
+                kontenAdapter.setOnItemClickListener(object : KontenAdapter.onItemClickListener{
+                    override fun onItemClick(position: Int) {
+//                        Toast.makeText(this@RecyclerViewActivity,"Clicked No : $position",Toast.LENGTH_LONG).show()
+                        val intent = Intent(context,HalamanKonten::class.java)
+                        intent.putExtra("judul",kontenArrayList[position].judul)
+                        startActivity(intent)
+                    }
+
+                })
+            }
+        } catch(e: Exception) {
+            withContext(Dispatchers.Main) {
+//                binding.progressLoadList.visibility = View.GONE
+//                Toast.makeText(this@HomeFragment, e.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
+
+            }
+        }
     }
+
+
+    private fun getUserData() {
+
+        database = FirebaseDatabase.getInstance().getReference("konten")
+
+        database.addValueEventListener(object : ValueEventListener {
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if (snapshot.exists()){
+
+                    for (userSnapshot in snapshot.children){
+
+                        val konten = userSnapshot.getValue(Konten::class.java)
+                        kontenArrayList.add(konten!!)
+
+                    }
+
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+
+        })
+
+    }
+
+
+
 }

@@ -40,7 +40,7 @@ class Login : AppCompatActivity(){
             mAuth.signInWithEmailAndPassword(inputEmail, inputPass)
                 .addOnCompleteListener(this){
                     if(it.isSuccessful){
-                        val intent2 = Intent (this, RecyclerViewActivity::class.java)
+                        val intent2 = Intent (this, MainActivity::class.java)
                         startActivity(intent2)
                     }else {
                         Toast.makeText(baseContext, "Email atau password anda salah", Toast.LENGTH_SHORT).show()

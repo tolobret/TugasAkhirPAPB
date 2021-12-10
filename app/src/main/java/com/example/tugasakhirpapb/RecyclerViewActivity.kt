@@ -1,89 +1,116 @@
 package com.example.tugasakhirpapb
 
-import android.graphics.BitmapFactory
+import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import coil.transform.RoundedCornersTransformation
-import com.example.tugasakhirpapb.databinding.ActivityHalamanKontenBinding
 import com.example.tugasakhirpapb.databinding.RecyclerViewBinding
+import com.example.tugasakhirpapb.fragment.CreateFragment
+import com.example.tugasakhirpapb.fragment.HomeFragment
+import com.example.tugasakhirpapb.fragment.ProfileFragment
 import com.example.tugasakhirpapb.model.Konten
 import com.example.tugasakhirpapb.viewHolder.KontenAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import com.example.tugasakhirpapb.CreatePost
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class RecyclerViewActivity : AppCompatActivity() {
 
-    private lateinit var recycler : RecyclerView
-    private lateinit var kontenList:ArrayList<Konten>
     private lateinit var database : DatabaseReference
-    private lateinit var mAuth: FirebaseAuth
-    private lateinit var kontenAdapter : KontenAdapter
-    var imgName: String = ""
-    lateinit var imgKonten : ImageView
-    lateinit var judul : TextView
     private lateinit var kontenArrayList : ArrayList<Konten>
+    private lateinit var tempArrayList : ArrayList<Konten>
 
     private val storageReference = FirebaseStorage.getInstance().getReference("konten_images")
     private lateinit var binding: RecyclerViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = RecyclerViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+//        val homeFragment = HomeFragment()
+//        val profileFragment = ProfileFragment()
+//        val createPostFragment = CreateFragment()
+//        var bottomNav : BottomNavigationView = findViewById(R.id.bottom_navigation_view)
+
         kontenArrayList = arrayListOf<Konten>()
+        tempArrayList = arrayListOf<Konten>()
         getUserData()
         getAllImage()
 
-        val bottomNav = findViewById<BottomNavigationView
-                >(R.id.bottom_navigatin_view)
-        val navController = findNavController(R.id.nav_fragment)
-        bottomNav.setupWithNavController(navController
-        )
 
-        bottomNav.setOnNavigationItemReselectedListener {
-            when (it.itemId) {
-                R.id.recyclerViewActivity -> {
-                    setContent("RecyclerView")
-                    true
-                }
-                R.id.createPost -> {
-                    setContent("CreatePost")
-                    true
-                }
-                R.id.profile -> {
-                    setContent("Profile")
-                    true
-                }
-                else -> false
-            }
+//        bottomNav.setOnItemSelectedListener { item ->
+//            when(item.itemId){
+//                R.id.homeFragment -> replaceFragment(homeFragment)
+//                R.id.profileFragment -> replaceFragment(profileFragment)
+//                R.id.createFragment -> replaceFragment(createPostFragment)
+//            }
+//            true
+//        }
+    }
+
+    private fun replaceFragment(fragment : Fragment){
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container, fragment)
+            commit()
+
         }
-
     }
 
-    private fun setContent(s : String) {
-        setTitle(s)
-    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.menu_item,menu)
+        val item = menu?.findItem(R.id.search_action)
+
+        val searchView = item?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+
+                tempArrayList.clear()
+                val searchText = p0!!.toLowerCase(Locale.getDefault())
+                if (searchText.isNotEmpty()){
+
+                    kontenArrayList.forEach {
+
+                        if (it.judul.toString().toLowerCase(Locale.getDefault())?.contains(searchText)){
+
+                            tempArrayList.add(it)
+                        }
+                    }
+                    binding.recyclerView.adapter!!.notifyDataSetChanged()
+                }else {
+                    tempArrayList.clear()
+                    tempArrayList.addAll(kontenArrayList)
+                    binding.recyclerView.adapter?.notifyDataSetChanged()
+                }
+
+
+
+                return false
+
+            }
+        })
+
+        return super.onCreateOptionsMenu(menu)
+    }
     private fun getAllImage() = CoroutineScope(Dispatchers.IO).launch {
         try {
             val images = storageReference.listAll().await()
@@ -94,15 +121,24 @@ class RecyclerViewActivity : AppCompatActivity() {
             }
 
             withContext(Dispatchers.Main) {
-                val animalAdapter = KontenAdapter(imageUrls,kontenArrayList)
+                val kontenAdapter = KontenAdapter(imageUrls,tempArrayList)
 //                if (animalAdapter.itemCount == 0) {
 //                    binding.textView8.text = View.VISIBLE
 //                }
 
                 binding.recyclerView.apply {
-                    adapter = animalAdapter
+                    adapter = kontenAdapter
                     layoutManager = LinearLayoutManager(this@RecyclerViewActivity)
                 }
+                kontenAdapter.setOnItemClickListener(object : KontenAdapter.onItemClickListener{
+                    override fun onItemClick(position: Int) {
+//                        Toast.makeText(this@RecyclerViewActivity,"Clicked No : $position",Toast.LENGTH_LONG).show()
+                        val intent = Intent(this@RecyclerViewActivity,HalamanKonten::class.java)
+                        intent.putExtra("judul",kontenArrayList[position].judul)
+                        startActivity(intent)
+                    }
+
+                })
             }
         } catch(e: Exception) {
             withContext(Dispatchers.Main) {
@@ -110,6 +146,7 @@ class RecyclerViewActivity : AppCompatActivity() {
                 Toast.makeText(this@RecyclerViewActivity, e.message, Toast.LENGTH_LONG).show()
             }
         }
+
     }
 
 
@@ -130,6 +167,7 @@ class RecyclerViewActivity : AppCompatActivity() {
                         kontenArrayList.add(konten!!)
 
                     }
+                    tempArrayList.addAll(kontenArrayList)
 
                 }
 
