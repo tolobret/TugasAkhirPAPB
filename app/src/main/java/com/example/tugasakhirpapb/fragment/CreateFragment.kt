@@ -10,10 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.bumptech.glide.Glide
 import com.example.tugasakhirpapb.R
 import com.example.tugasakhirpapb.model.Konten
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.text.SimpleDateFormat
@@ -27,13 +28,17 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
 //    }
 
     private lateinit var database: DatabaseReference
+    private lateinit var mAuth : FirebaseAuth
     lateinit var textJudul : EditText
     lateinit var textKonten : EditText
     lateinit var textLocation : EditText
     lateinit var btPost : Button
 
+    lateinit var nama : TextView
+
     lateinit var filePath : Uri
     lateinit var date : String
+
 
     private lateinit var btImage : ImageButton
 
@@ -43,12 +48,15 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.activity_create_post, container, false)
+        mAuth = FirebaseAuth.getInstance()
+        loadUserInfo()
 
         textJudul = view.findViewById(R.id.text_Judul)
         textKonten = view.findViewById(R.id.text_Post)
         textLocation = view.findViewById(R.id.text_Location)
         btPost = view.findViewById(R.id.bt_post)
         btImage = view.findViewById(R.id.img_photos)
+        nama = view.findViewById(R.id.text_Name)
 
         database = FirebaseDatabase.getInstance().getReference()
 
@@ -68,6 +76,25 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
 
 
 
+    }
+
+    private fun loadUserInfo() {
+        var userId : String = ""
+        val user = mAuth.currentUser
+        user?.let {
+            userId = user.uid
+        }
+        database = FirebaseDatabase.getInstance().getReference("userData")
+        database.child(userId).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                nama.text = "${snapshot.child("nama").value}"
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 
     private fun uploadKonten() {

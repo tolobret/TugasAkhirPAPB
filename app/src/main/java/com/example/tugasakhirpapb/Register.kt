@@ -58,7 +58,7 @@ class Register : AppCompatActivity(){
                             val userData = userData(
                                 name, email, pass
                             )
-                            database.child("userData").child(name).setValue(userData).addOnSuccessListener {
+                            database.child("userData").child(user?.uid.toString()).setValue(userData).addOnSuccessListener {
                             }
 
                             Toast.makeText(

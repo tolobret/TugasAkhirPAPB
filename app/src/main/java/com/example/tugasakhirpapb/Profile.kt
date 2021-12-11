@@ -61,9 +61,13 @@ class Profile : AppCompatActivity() {
 
 
     private fun loadUserInfo() {
+        var userId : String = ""
         val user = mAuth.currentUser
+        user?.let {
+            userId = user.uid
+        }
         database = FirebaseDatabase.getInstance().getReference("userData")
-        database.child("userData").addValueEventListener(object : ValueEventListener{
+        database.child(userId).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val Foto = "${snapshot.child("fotoProfil").value}"
                 val Nama = "${snapshot.child("akunUser").value}"
