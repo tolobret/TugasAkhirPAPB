@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/img_konten"
         android:layout_width="415dp"
-        android:layout_height="246dp"
+        android:layout_height="279dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,27 +32,35 @@
     <TextView
         android:id="@+id/text_lokasi"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="271dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/rounded_loc"
+        android:drawableLeft="@drawable/loc_icon"
+        android:drawablePadding="5dp"
         android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
         android:onClick="intentMaps"
+        android:padding="4dp"
         android:text="Location"
+        android:textSize="11dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.039"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_konten"
+        tools:ignore="TouchTargetSizeCheck" />
 
-    <ImageView
-        android:id="@+id/imageView8"
+    <TextView
+        android:id="@+id/text_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="268dp"
-        android:onClick="intentMaps"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/montserrat"
+        android:text="0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintHorizontal_bias="0.908"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/loc_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_like" />
 
     <ImageView
         android:id="@+id/imageView14"
@@ -65,32 +73,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/line3" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bt_like"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="256dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/like"
-        app:cornerRadius="50dp"
+        android:backgroundTint="#F6F9FF"
+        android:src="@drawable/like"
+        app:backgroundTint="#EAEBFF"
+        app:borderWidth="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.937"
         app:layout_constraintStart_toEndOf="@+id/text_lokasi"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <TextView
-        android:id="@+id/text_like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="296dp"
-        android:layout_marginEnd="10dp"
-        android:fontFamily="@font/montserrat"
-        android:text="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView19"
