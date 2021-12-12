@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.OnBackPressedCallback
 import com.bumptech.glide.Glide
 import com.example.tugasakhirpapb.R
 import com.example.tugasakhirpapb.model.Konten
@@ -19,6 +20,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.system.exitProcess
 
 class CreateFragment : Fragment(R.layout.activity_create_post) {
 
@@ -33,11 +35,15 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
     lateinit var textKonten : EditText
     lateinit var textLocation : EditText
     lateinit var btPost : Button
+    lateinit var imgProfile : ImageView
 
     lateinit var nama : TextView
 
     lateinit var filePath : Uri
     lateinit var date : String
+
+    private var pressedTime = 0L
+
 
 
     private lateinit var btImage : ImageButton
@@ -57,6 +63,7 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
         btPost = view.findViewById(R.id.bt_post)
         btImage = view.findViewById(R.id.img_photos)
         nama = view.findViewById(R.id.text_Name)
+        imgProfile= view.findViewById(R.id.img_profile)
 
         database = FirebaseDatabase.getInstance().getReference()
 
@@ -72,6 +79,22 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
         }
 
 
+
+        val callback= object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                if (pressedTime+2000> System.currentTimeMillis()){
+
+                    exitProcess(-1)
+                }else{
+                    Toast.makeText(context,"Press back again to exit app", Toast.LENGTH_SHORT).show()
+                }
+                pressedTime = System.currentTimeMillis()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
+
+
+
         return view
 
 
@@ -84,17 +107,32 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
         user?.let {
             userId = user.uid
         }
+
         database = FirebaseDatabase.getInstance().getReference("userData")
         database.child(userId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 nama.text = "${snapshot.child("nama").value}"
+                val foto = "${snapshot.child("fotoProfil").value}"
+                try {
+                    Glide.with(this@CreateFragment)
+                        .load(foto)
+                        .placeholder(R.drawable.ellipse_20)
+                        .into(imgProfile)
+                }
+                catch (e: Exception){
+
+                }
 
             }
+
 
             override fun onCancelled(error: DatabaseError) {
 
             }
+
         })
+
+
     }
 
     private fun uploadKonten() {

@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tugasakhirpapb.HalamanKonten
@@ -24,6 +26,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import kotlin.system.exitProcess
 
 
 class HomeFragment : Fragment(R.layout.recycler_view) {
@@ -38,8 +41,9 @@ class HomeFragment : Fragment(R.layout.recycler_view) {
 
     private val storageReference = FirebaseStorage.getInstance().getReference("konten_images")
     private lateinit var binding: RecyclerViewBinding
-
+    private var pressedTime = 0L
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -51,8 +55,24 @@ class HomeFragment : Fragment(R.layout.recycler_view) {
         getUserData()
         getAllImage()
 
+        val callback= object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                if (pressedTime+2000> System.currentTimeMillis()){
+
+                    exitProcess(-1)
+                }else{
+                    Toast.makeText(context,"Press back again to exit app", Toast.LENGTH_SHORT).show()
+                }
+                pressedTime = System.currentTimeMillis()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
+
         return binding.root
     }
+
+
+
 
     private fun getAllImage() = CoroutineScope(Dispatchers.IO).launch {
         try {

@@ -44,7 +44,11 @@
         <entry key="..\:/Users/ZahraMaharani/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/recycler_view.xml" value="0.10144927536231885" />
         <entry key="..\:/Users/ZahraMaharani/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/register_activity.xml" value="0.10144927536231885" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/drawable/border.xml" value="0.3828125" />
+        <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/drawable/circle.xml" value="0.3828125" />
+        <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/drawable/rounded_loc.xml" value="0.3828125" />
+        <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/drawable/search_bg.xml" value="0.3828125" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/drawable/sosmed_imgBtn.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/drawable/sosmed_imgbtn.xml" value="0.3828125" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/font/montserrat.xml" value="0.396875" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/font/montserrat_bold.xml" value="0.396875" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_create_post.xml" value="0.33" />
@@ -52,6 +56,7 @@
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_halaman_konten.xml" value="0.33" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/konten_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/recycler_view.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/register_activity.xml" value="0.36666666666666664" />
       </map>
     </option>
