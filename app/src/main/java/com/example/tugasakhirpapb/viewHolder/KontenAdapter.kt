@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.bumptech.glide.Glide
 import com.example.tugasakhirpapb.model.Konten
 import com.example.tugasakhirpapb.databinding.KontenViewBinding
 import com.example.tugasakhirpapb.R
@@ -41,6 +42,7 @@ class KontenAdapter(private val ImageUrl: List<String>,
                     transformations(RoundedCornersTransformation(10F))
                 }
             }
+
         }
         init {
             itemView.setOnClickListener{
@@ -60,7 +62,19 @@ class KontenAdapter(private val ImageUrl: List<String>,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         ImageUrl[position].let {
-            holder.bind(it)
+//            holder.bind(it)
+
+            try {
+                Glide.with(holder.itemView)
+                    .load(it)
+                    .centerCrop()
+                    .placeholder(R.drawable.shape)
+                    .into(holder.itemView.findViewById(R.id.imageKonten))
+            }
+            catch (e: Exception){
+
+            }
+
         }
         val currentitem = kontenList[position]
         holder.judul.text =currentitem.judul

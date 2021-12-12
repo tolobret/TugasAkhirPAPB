@@ -8,6 +8,8 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.InputType
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.*
@@ -25,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.awaitAll
 
 class EditProfile : AppCompatActivity() {
 
@@ -44,6 +47,7 @@ class EditProfile : AppCompatActivity() {
     var userId : String = ""
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
@@ -57,7 +61,7 @@ class EditProfile : AppCompatActivity() {
         saveBtn = findViewById(R.id.btnSave)
         btnBack = findViewById(R.id.back1)
         fotoProfile = findViewById(R.id.fotoProfile)
-
+        val checkbox : CheckBox = findViewById(R.id.checkBox3)
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -104,8 +108,10 @@ class EditProfile : AppCompatActivity() {
                 "email" to Email,
                 "nomor" to No,
                 "tglLahir" to Tgl,
-                "alamat" to Alamat
+                "alamat" to Alamat,
+                "password" to Pw
             )
+
 
             database.child(userId).updateChildren(update).addOnCompleteListener {
                 if(it.isSuccessful){
@@ -116,7 +122,27 @@ class EditProfile : AppCompatActivity() {
                 }
             }
 
+            user!!.updatePassword(Pw)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+//                        Toast.makeText(baseContext,"Password Changed", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            if (filePath == null){
+                finish()
+            }
 
+
+        }
+
+        checkbox.setOnClickListener(){
+            if (checkbox.isChecked){
+                editPw.inputType = 1
+
+            }else{
+                editPw.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+            }
         }
 
     }
@@ -145,13 +171,11 @@ class EditProfile : AppCompatActivity() {
     }
 
 
-//     cek lagi
 
     private fun updateProfile(uploadedImageUri: String) {
         progressDialog.setMessage("Updating profile..")
 
         val hashMap: HashMap<String, Any> = HashMap()
-//        hashMap["nama"] = "$namaAkun"
         if (filePath != null){
             hashMap["fotoProfil"] = uploadedImageUri
         }
@@ -162,12 +186,14 @@ class EditProfile : AppCompatActivity() {
             .addOnSuccessListener {
                 progressDialog.dismiss()
                 Toast.makeText(this, "Profil berhasil diupdate", Toast.LENGTH_SHORT).show()
+                finish()
 
             }
             .addOnFailureListener(){e->
                 progressDialog.dismiss()
                 Toast.makeText(this, "Gagal update profile ke ${e.message}", Toast.LENGTH_SHORT).show()
             }
+
     }
 
     private fun loadUserInfo() {
@@ -194,7 +220,7 @@ class EditProfile : AppCompatActivity() {
                 try {
                     Glide.with(this@EditProfile)
                         .load(Foto)
-                        .placeholder(R.drawable.ellipse_20)
+                        .placeholder(R.drawable.profile_icon)
                         .into(fotoProfile)
                 }
                 catch (e: Exception){

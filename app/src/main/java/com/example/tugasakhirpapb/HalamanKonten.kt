@@ -45,6 +45,7 @@ class HalamanKonten : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private val storageReference = FirebaseStorage.getInstance().getReference("konten_images")
     var like :Int = 0
+    private lateinit var judul : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -69,44 +70,12 @@ class HalamanKonten : AppCompatActivity() {
 
 
         val bundle : Bundle?=intent.extras
-        val judul = bundle!!.getString("judul").toString()
+        judul = bundle!!.getString("judul").toString()
 
 
-
-        database.child("konten").child(judul).get().addOnSuccessListener {
-            imgName ="${it.child("foto").value}"
-            downloadImage(imgName)
-            textJudul.text="${it.child("judul").value}"
-            textKonten.text="${it.child("konten_cerita").value}"
-            textLokasi.text="${it.child("location").value}"
-            textLike.text="${it.child("like_count").value}"
-            like = "${it.child("like_count").value}".toInt()
-
-        }.addOnFailureListener{
-            Toast.makeText(this,"Failed to Get Data", Toast.LENGTH_SHORT).show()
-        }
+        showImage()
 
 
-//        try {
-//            Glide.with(this@HalamanKonten)
-//                .load("https://firebasestorage.googleapis.com/v0/b/tugasakhirpapb.appspot.com/o/ProfileImages%2FyNgKsNugRJeJ4lzzatscumjAgT43?alt=media&token=91a04329-0931-4df9-9d07-a5146076eb17")
-//                .placeholder(R.drawable.ellipse_20)
-//                .into(imgKonten)
-//        }
-//        catch (e: Exception){
-//
-//        }
-
-
-//        val storageref = FirebaseStorage.getInstance().reference.child("konten_images").child("test3")
-//        val localfile = File.createTempFile("tempImage","jpg")
-//        storageref.getFile(localfile).addOnSuccessListener {
-//
-//            val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
-//            imgKonten.setImageBitmap(bitmap)
-//        }.addOnFailureListener{ exception ->
-//            Toast.makeText(applicationContext,exception.localizedMessage, Toast.LENGTH_LONG).show()
-//        }
 
         btLike.setOnClickListener(){
 
@@ -131,42 +100,35 @@ class HalamanKonten : AppCompatActivity() {
             }
         }
     }
-    /**
-     * Fungsi download gambar dari firebase storage
-     */
-    private fun downloadImage(foto: String) = CoroutineScope(Dispatchers.IO).launch {
-        try {
-            val maxDownloadSize = 5L * 1024 * 1024
-            val bytes = storageReference.child(foto).getBytes(maxDownloadSize).await()
-            val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-            binding.progressBar.visibility = View.VISIBLE
-            withContext(Dispatchers.Main) {
-                binding.imgKonten.load(bitmap){
-                    crossfade(true)
-                    crossfade(500)
-                    transformations(RoundedCornersTransformation(10F))
-                }
+
+    private fun showImage() {
+        database.child("konten").child(judul).get().addOnSuccessListener {
+            imgName ="${it.child("urlFoto").value}"
+
+            textJudul.text="${it.child("judul").value}"
+            textKonten.text="${it.child("konten_cerita").value}"
+            textLokasi.text="${it.child("location").value}"
+            textLike.text="${it.child("like_count").value}"
+            like = "${it.child("like_count").value}".toInt()
+
+
+            try {
+                Glide.with(this@HalamanKonten)
+                    .load(imgName)
+                    .centerCrop()
+                    .placeholder(R.drawable.shape)
+                    .into(imgKonten)
                 binding.progressBar.visibility = View.GONE
+            }
+            catch (e: Exception){
 
             }
-        } catch(e: Exception) {
-            withContext(Dispatchers.Main) {
-//                binding.textJudul.error = e.message
-//                binding.progressBarLoadingIndicator.visibility = View.GONE
-                Toast.makeText(applicationContext,e.localizedMessage, Toast.LENGTH_LONG).show()
-            }
+
+        }.addOnFailureListener{
+            Toast.makeText(this,"Failed to Get Data", Toast.LENGTH_SHORT).show()
         }
     }
 
-
-
-    private fun setImageViewHome() {
-        binding.imgKonten.load(ContextCompat.getDrawable(this, R.drawable.shape)){
-            crossfade(true)
-            crossfade(500)
-            transformations(RoundedCornersTransformation(10F))
-        }
-    }
 
     fun intentMaps(view: View){
         val gmmIntentUri = Uri.parse("geo:0,0?q=${textLokasi.text.toString()}")

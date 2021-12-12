@@ -86,7 +86,7 @@ class HomeFragment : Fragment(R.layout.recycler_view) {
             withContext(Dispatchers.Main) {
                 val kontenAdapter = KontenAdapter(imageUrls,kontenArrayList)
                 if (kontenAdapter.itemCount == 0) {
-                    binding.progressBar2.visibility = View.VISIBLE
+                    binding.progressBar2.visibility = View.GONE
                 }
 
 
