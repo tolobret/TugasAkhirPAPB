@@ -225,17 +225,17 @@
         android:id="@+id/btnSignOut"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginBottom="36dp"
         android:layout_marginLeft="28dp"
+        android:layout_marginTop="44dp"
         android:layout_marginRight="28dp"
+        android:backgroundTint="#3562D7"
         android:fontFamily="@font/montserrat"
         android:text="Sign Out"
-        android:backgroundTint="#3562D7"
         android:textSize="16sp"
         app:cornerRadius="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
     <ImageView
         android:id="@+id/imageView"
