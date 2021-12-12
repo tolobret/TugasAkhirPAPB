@@ -1,17 +1,23 @@
 package com.example.tugasakhirpapb
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.View
+import android.widget.*
 import androidx.core.content.ContextCompat
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.bumptech.glide.Glide
 import com.example.tugasakhirpapb.model.userData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import androidx.core.content.ContextCompat.startActivity as startActivity
 
 class Profile : AppCompatActivity() {
@@ -35,7 +41,6 @@ class Profile : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
 
         namaAkun = findViewById(R.id.namaAkun)
-        nama = findViewById(R.id.Nama1)
         email = findViewById(R.id.Email1)
         nomor = findViewById(R.id.Nomor1)
         tanggal = findViewById(R.id.Date1)
@@ -95,7 +100,14 @@ class Profile : AppCompatActivity() {
 //                catch (e: Exception){
 //
 //                }
+
+
+
             }
+
+
+
+
 
             override fun onCancelled(error: DatabaseError) {
 

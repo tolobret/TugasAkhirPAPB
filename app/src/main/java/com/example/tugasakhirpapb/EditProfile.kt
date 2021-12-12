@@ -16,6 +16,7 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
+import com.example.tugasakhirpapb.fragment.ProfileFragment
 import com.example.tugasakhirpapb.model.Konten
 import com.example.tugasakhirpapb.model.userData
 import com.google.android.gms.tasks.Task
@@ -30,7 +31,6 @@ class EditProfile : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private lateinit var mAuth : FirebaseAuth
     lateinit var namaAkun : EditText
-    lateinit var editUsername : EditText
     lateinit var editEmail : EditText
     lateinit var editNo : EditText
     lateinit var editTgl : EditText
@@ -41,6 +41,7 @@ class EditProfile : AppCompatActivity() {
     lateinit var fotoProfile : ImageView
     var filePath: Uri?= null
     lateinit var progressDialog: ProgressDialog
+    var userId : String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +49,6 @@ class EditProfile : AppCompatActivity() {
         setContentView(R.layout.activity_edit_profile)
 
         namaAkun = findViewById(R.id.namaAkun)
-        editUsername = findViewById(R.id.editUsername)
         editEmail = findViewById(R.id.editEmail)
         editNo = findViewById(R.id.editNo)
         editTgl = findViewById(R.id.editTgl)
@@ -59,15 +59,24 @@ class EditProfile : AppCompatActivity() {
         fotoProfile = findViewById(R.id.fotoProfile)
 
 
+        mAuth = FirebaseAuth.getInstance()
+
+
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Tunggu")
         progressDialog.setCanceledOnTouchOutside(false)
 
-        mAuth = FirebaseAuth.getInstance()
+
+        val user = mAuth.currentUser
+        user?.let {
+            userId = user.uid
+        }
+
         loadUserInfo()
 
+
         btnBack.setOnClickListener(){
-            val intent = Intent(this, Profile::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
@@ -76,81 +85,48 @@ class EditProfile : AppCompatActivity() {
         }
 
         saveBtn.setOnClickListener(){
+            if (filePath != null){
+                uploadImage()
+
+            }
+
+
             val Nama = namaAkun.text.toString()
-            val Username = editUsername.text.toString()
             val Email = editEmail.text.toString()
             val No = editNo.text.toString()
             val Tgl = editTgl.text.toString()
             val Alamat = editAlamat.text.toString()
             val Pw = editPw.text.toString()
 
-            val userData = userData(Nama, Username, Email, No, Tgl, Alamat, Pw)
-            database.child("userData").setValue(userData).addOnCompleteListener {
+
+
+            var update = mapOf<String,String>(
+                "email" to Email,
+                "nomor" to No,
+                "tglLahir" to Tgl,
+                "alamat" to Alamat
+            )
+
+            database.child(userId).updateChildren(update).addOnCompleteListener {
                 if(it.isSuccessful){
                     Toast.makeText(baseContext,"Succes to update profile", Toast.LENGTH_LONG).show()
+
                 }else{
                     Toast.makeText(baseContext,"Failed to update profile", Toast.LENGTH_SHORT).show()
                 }
             }
+
+
         }
-//        val user = mAuth.currentUser
-//        database = FirebaseDatabase.getInstance().getReference("userData")
-//
-//        saveBtn.setOnClickListener(){
-//
-//            val Username = editUsername.text.toString()
-//            val Email = editEmail.text.toString()
-//            val No = editNo.text.toString()
-//            val Tgl = editTgl.text.toString()
-//            val Alamat = editAlamat.text.toString()
-//            val Pw = editPw.text.toString()
-//
-//            val userData = userData(Username, Email, No, Tgl, Alamat, Pw)
-//            database.child("userData").setValue(userData).addOnCompleteListener {
-//                if(it.isSuccessful){
-//                    Toast.makeText(baseContext,"Succes to update profile", Toast.LENGTH_LONG).show()
-//                }else{
-//                    Toast.makeText(baseContext,"Failed to update profile", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//        btnBack.setOnClickListener() {
-//            val intent = Intent(this, Profile::class.java)
-//            startActivity(intent)
-//        }
+
     }
 
-//    private var user = ""
-//    private var email = ""
-//    private var nomor = ""
-//    private var tanggal = ""
-//    private var alamat = ""
-//    private var password = ""
-//    private fun validateData() {
-//        user = editUsername.text.toString().trim()
-//        email = editEmail.text.toString().trim()
-//        nomor = editNo.text.toString().trim()
-//        tanggal = editTgl.text.toString().trim()
-//        alamat = editAlamat.text.toString().trim()
-//        password = editPw.text.toString().trim()
-//
-//        if (user.isEmpty()){
-//            Toast.makeText(this, "Masukkan Username", Toast.LENGTH_SHORT).show()
-//        }else {
-//
-//            if(filePath == null){
-//                updateProfile("")
-//            }else{
-//                uploadImage()
-//            }
-//        }
-//    }
 
     private fun uploadImage() {
         progressDialog.setMessage("Uploading profile image")
         progressDialog.show()
 
-        val filePathAndName = "ProfileImages/"+mAuth.uid
+        val filePathAndName = "ProfileImages/"+ mAuth.currentUser!!.uid
 
         val reference = FirebaseStorage.getInstance().getReference(filePathAndName)
         reference.putFile(filePath!!)
@@ -168,21 +144,25 @@ class EditProfile : AppCompatActivity() {
             }
     }
 
+
+//     cek lagi
+
     private fun updateProfile(uploadedImageUri: String) {
         progressDialog.setMessage("Updating profile..")
 
         val hashMap: HashMap<String, Any> = HashMap()
-        hashMap["nama"] = "$editUsername"
+//        hashMap["nama"] = "$namaAkun"
         if (filePath != null){
             hashMap["fotoProfil"] = uploadedImageUri
         }
 
         val reference = FirebaseDatabase.getInstance().getReference("userData")
-        reference.child("userData")
+        reference.child(userId)
             .updateChildren(hashMap)
             .addOnSuccessListener {
                 progressDialog.dismiss()
                 Toast.makeText(this, "Profil berhasil diupdate", Toast.LENGTH_SHORT).show()
+
             }
             .addOnFailureListener(){e->
                 progressDialog.dismiss()
@@ -191,21 +171,20 @@ class EditProfile : AppCompatActivity() {
     }
 
     private fun loadUserInfo() {
-        val user = mAuth.currentUser
+
         database = FirebaseDatabase.getInstance().getReference("userData")
-        database.child("userData").addValueEventListener(object : ValueEventListener{
+        database.child(userId).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 val Foto = "${snapshot.child("fotoProfil").value}"
-                val Nama = "${snapshot.child("akunUser").value}"
-                val Username = "${snapshot.child("nama").value}"
+
+                val nama = "${snapshot.child("nama").value}"
                 var Email = "${snapshot.child("email").value}"
                 val Nomor = "${snapshot.child("nomor").value}"
                 val Tanggal = "${snapshot.child("tglLahir").value}"
                 var Alamat = "${snapshot.child("alamat").value}"
                 val Password = "${snapshot.child("password").value}"
 
-                namaAkun.setText(Nama)
-                editUsername.setText(Username)
+                namaAkun.setText(nama)
                 editEmail.setText(Email)
                 editNo.setText(Nomor)
                 editTgl.setText(Tanggal)
@@ -214,7 +193,7 @@ class EditProfile : AppCompatActivity() {
 
                 try {
                     Glide.with(this@EditProfile)
-                        .load(fotoProfile)
+                        .load(Foto)
                         .placeholder(R.drawable.ellipse_20)
                         .into(fotoProfile)
                 }

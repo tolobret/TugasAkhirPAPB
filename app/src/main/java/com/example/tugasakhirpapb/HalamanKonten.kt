@@ -25,6 +25,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.bumptech.glide.Glide
 import com.example.tugasakhirpapb.databinding.ActivityHalamanKontenBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 
@@ -38,7 +39,7 @@ class HalamanKonten : AppCompatActivity() {
     lateinit var textLokasi : TextView
     lateinit var textLike : TextView
     lateinit var imgCreatePost : ImageView
-    lateinit var btLike : Button
+    lateinit var btLike : FloatingActionButton
      var imgName: String = ""
     lateinit var imgKonten : ImageView
     private lateinit var auth: FirebaseAuth
@@ -84,6 +85,17 @@ class HalamanKonten : AppCompatActivity() {
         }.addOnFailureListener{
             Toast.makeText(this,"Failed to Get Data", Toast.LENGTH_SHORT).show()
         }
+
+
+//        try {
+//            Glide.with(this@HalamanKonten)
+//                .load("https://firebasestorage.googleapis.com/v0/b/tugasakhirpapb.appspot.com/o/ProfileImages%2FyNgKsNugRJeJ4lzzatscumjAgT43?alt=media&token=91a04329-0931-4df9-9d07-a5146076eb17")
+//                .placeholder(R.drawable.ellipse_20)
+//                .into(imgKonten)
+//        }
+//        catch (e: Exception){
+//
+//        }
 
 
 //        val storageref = FirebaseStorage.getInstance().reference.child("konten_images").child("test3")
@@ -145,6 +157,8 @@ class HalamanKonten : AppCompatActivity() {
             }
         }
     }
+
+
 
     private fun setImageViewHome() {
         binding.imgKonten.load(ContextCompat.getDrawable(this, R.drawable.shape)){
