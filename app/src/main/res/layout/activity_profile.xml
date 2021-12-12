@@ -216,7 +216,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat"
-        android:inputType="textPassword"
         android:text="********"
         android:textColor="#212530"
         app:layout_constraintEnd_toEndOf="@+id/Address1"
