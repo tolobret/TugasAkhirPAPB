@@ -12,8 +12,11 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import com.bumptech.glide.Glide
+import com.example.tugasakhirpapb.MainActivity
 import com.example.tugasakhirpapb.R
+import com.example.tugasakhirpapb.Register
 import com.example.tugasakhirpapb.model.Konten
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -116,7 +119,8 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
                 try {
                     Glide.with(this@CreateFragment)
                         .load(foto)
-                        .placeholder(R.drawable.ellipse_20)
+                        .centerCrop()
+                        .placeholder(R.drawable.profile_icon)
                         .into(imgProfile)
                 }
                 catch (e: Exception){
@@ -146,11 +150,14 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
             date
         )
         database.child("konten").child(textJudul.text.toString()).setValue(konten).addOnSuccessListener {
-            Toast.makeText(context,"Successfully Posted", Toast.LENGTH_SHORT).show()
+
+            uplloadFile()
+
+//            Toast.makeText(context,"Successfully Posted", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener{
             Toast.makeText(context,"Failed to Post", Toast.LENGTH_SHORT).show()
         }
-        uplloadFile()
+//        uplloadFile()
     }
 
     fun selectImage(view: View) {
@@ -167,7 +174,14 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
             imageRef.putFile(filePath)
                 .addOnSuccessListener { p0 ->
                     pd.dismiss()
-                    Toast.makeText(context?.applicationContext,"File Uploaded", Toast.LENGTH_LONG).show()
+                    val uriTask: Task<Uri> = p0.storage.downloadUrl
+                    while (!uriTask.isSuccessful);
+                    val uploadedImageUri = "${uriTask.result}"
+
+                    updateUrl(uploadedImageUri)
+
+//                    Toast.makeText(context?.applicationContext,"File Uploaded", Toast.LENGTH_LONG).show()
+
                 }
                 .addOnFailureListener {p0 ->
                     pd.dismiss()
@@ -177,6 +191,28 @@ class CreateFragment : Fragment(R.layout.activity_create_post) {
                     pd.setMessage("Uploaded ${progress.toInt()}%")
                 }
         }
+    }
+
+    private fun updateUrl(uploadedImageUri: String) {
+        val hashMap: HashMap<String, Any> = HashMap()
+        if (filePath != null){
+            hashMap["urlFoto"] = uploadedImageUri
+        }
+
+        val reference = FirebaseDatabase.getInstance().getReference("konten")
+        reference.child(textJudul.text.toString())
+            .updateChildren(hashMap)
+            .addOnSuccessListener {
+
+                Toast.makeText(context, "Successfully Posted", Toast.LENGTH_SHORT).show()
+                val intent = Intent(context, MainActivity::class.java)
+                startActivity(intent)
+
+            }
+            .addOnFailureListener(){e->
+                Toast.makeText(context, "Gagal update URL ke ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+
     }
 
     private fun startFileChooser() {

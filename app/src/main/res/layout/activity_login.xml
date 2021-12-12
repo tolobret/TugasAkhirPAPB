@@ -88,9 +88,9 @@
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/form_login"
+        android:elevation="10dp"
         android:ems="10"
         android:hint="E-mail"
-        android:elevation="10dp"
         android:inputType="textEmailAddress"
         android:padding="15dp"
         android:textSize="14sp"
@@ -100,21 +100,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Forgot password?"
-        app:layout_constraintEnd_toEndOf="@+id/login_pass"
-        app:layout_constraintTop_toBottomOf="@+id/login_pass" />
-
     <Button
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="30dp"
         android:backgroundTint="#3562D7"
         android:padding="12dp"
@@ -124,22 +115,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
     <Button
         android:id="@+id/signUpBtn"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
         android:backgroundTint="#FFFFFF"
-        android:text="Sign up"
-        app:cornerRadius="20dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
         android:elevation="10dp"
+        android:text="Sign up"
         android:textColor="#000000"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:layout_editor_absoluteX="54dp" />
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView4"
@@ -153,5 +145,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
+
+        android:text="Show Password"
+        android:textColor="#737373"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_pass" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

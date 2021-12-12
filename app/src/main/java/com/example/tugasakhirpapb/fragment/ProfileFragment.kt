@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.bumptech.glide.Glide
@@ -27,6 +28,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import kotlin.system.exitProcess
 
 class ProfileFragment : Fragment(R.layout.activity_profile) {
 
@@ -44,6 +46,7 @@ class ProfileFragment : Fragment(R.layout.activity_profile) {
     lateinit var btnBack : ImageView
     private val storageReference = FirebaseStorage.getInstance().getReference("ProfileImages")
     private lateinit var binding: ActivityProfileBinding
+    private var pressedTime = 0L
 
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
@@ -93,6 +96,19 @@ class ProfileFragment : Fragment(R.layout.activity_profile) {
 
     }
 
+    val callback= object : OnBackPressedCallback(true){
+        override fun handleOnBackPressed() {
+            if (pressedTime+2000> System.currentTimeMillis()){
+
+                exitProcess(-1)
+            }else{
+                Toast.makeText(context,"Press back again to exit app", Toast.LENGTH_SHORT).show()
+            }
+            pressedTime = System.currentTimeMillis()
+        }
+    }
+    requireActivity().onBackPressedDispatcher.addCallback(callback)
+
         return view
     }
 
@@ -131,7 +147,8 @@ class ProfileFragment : Fragment(R.layout.activity_profile) {
                 try {
                     Glide.with(this@ProfileFragment)
                         .load(Foto)
-                        .placeholder(R.drawable.ellipse_20)
+                        .centerCrop()
+                        .placeholder(R.drawable.profile_icon)
                         .into(fotoProfile)
                 }
                 catch (e: Exception){
