@@ -86,15 +86,15 @@ class Profile : AppCompatActivity() {
                 alamat.text = Alamat.toString()
                 password.text = Password.toString()
 
-                try {
-                    Glide.with(this@Profile)
-                        .load(fotoProfile)
-                        .placeholder(R.drawable.ellipse_20)
-                        .into(fotoProfile)
-                }
-                catch (e: Exception){
-
-                }
+//                try {
+//                    Glide.with(this@Profile)
+//                        .load(fotoProfile)
+//                        .placeholder(R.drawable.ellipse_20)
+//                        .into(fotoProfile)
+//                }
+//                catch (e: Exception){
+//
+//                }
             }
 
             override fun onCancelled(error: DatabaseError) {
