@@ -64,10 +64,11 @@
         android:id="@+id/namaAkun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/montserrat"
         android:text="San Francisco, CA"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
@@ -75,7 +76,7 @@
         android:id="@+id/editEmail"
         android:layout_width="391dp"
         android:layout_height="55dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:fontFamily="@font/montserrat"
         android:hint="Email"
@@ -228,7 +229,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editPw"
-        app:layout_constraintVertical_bias="0.293" />
+        app:layout_constraintVertical_bias="1.0" />
+
+    <CheckBox
+        android:id="@+id/checkBox3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Password"
+        android:textColor="#737373"
+        app:layout_constraintTop_toBottomOf="@+id/editPw"
+        tools:layout_editor_absoluteX="16dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
