@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".EditProfile">
 
+    <EditText
+        android:id="@+id/editPw2"
+        android:layout_width="391dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:textAlignment="textEnd"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editAlamat" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="413dp"
@@ -64,7 +80,7 @@
         android:id="@+id/namaAkun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/montserrat"
         android:text="San Francisco, CA"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +120,6 @@
         android:id="@+id/editNo"
         android:layout_width="391dp"
         android:layout_height="55dp"
-        android:layout_marginTop="15dp"
         android:ems="10"
         android:fontFamily="@font/montserrat"
         android:hint="Phone"
@@ -133,7 +148,6 @@
         android:id="@+id/editTgl"
         android:layout_width="391dp"
         android:layout_height="55dp"
-        android:layout_marginTop="15dp"
         android:ems="10"
         android:fontFamily="@font/montserrat"
         android:hint="Date of birth"
@@ -161,12 +175,11 @@
         android:id="@+id/editAlamat"
         android:layout_width="391dp"
         android:layout_height="55dp"
-        android:layout_marginTop="15dp"
         android:ems="10"
         android:fontFamily="@font/montserrat"
         android:hint="Address"
-        android:paddingRight="24dp"
         android:inputType="textMultiLine"
+        android:paddingRight="24dp"
         android:textAlignment="textEnd"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -188,7 +201,6 @@
         android:id="@+id/editPw"
         android:layout_width="391dp"
         android:layout_height="55dp"
-        android:layout_marginTop="15dp"
         android:ems="10"
         android:fontFamily="@font/montserrat"
         android:hint="Password"
@@ -226,9 +238,34 @@
         app:cornerRadius="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPw"
-        app:layout_constraintVertical_bias="0.293" />
+        app:layout_constraintTop_toBottomOf="@+id/editConfirmPass"
+        app:layout_constraintVertical_bias="0.184" />
+
+    <EditText
+        android:id="@+id/editConfirmPass"
+        android:layout_width="391dp"
+        android:layout_height="55dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:textAlignment="textEnd"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPw2" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm Password"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="614dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
