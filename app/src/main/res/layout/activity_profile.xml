@@ -1,273 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Profile">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Date1"
-        app:srcCompat="@drawable/rectangle_1267" />
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Address1"
-        app:srcCompat="@drawable/rectangle_1267" />
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Pw1"
-        app:srcCompat="@drawable/rectangle_1267" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="413dp"
-        android:layout_height="76dp"
-        android:background="@color/white"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/back1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
-
-    <TextView
-        android:id="@+id/profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat"
-        android:text="Profile"
-        android:textColor="#000000"
-        android:textSize="28dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toStartOf="@+id/editProfile"
-        app:layout_constraintStart_toEndOf="@+id/back1"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/editProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_create_24" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:cardCornerRadius="70dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Profile">
 
         <ImageView
-            android:id="@+id/fotoProfile"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/ic_baseline_person" />
-    </androidx.cardview.widget.CardView>
+            android:id="@+id/imageView5"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Date1"
+            app:srcCompat="@drawable/rectangle_1267" />
 
-    <TextView
-        android:id="@+id/namaAkun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/montserrat"
-        android:text="San Francisco, CA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Address1"
+            app:srcCompat="@drawable/rectangle_1267" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="342dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Pw1"
+            app:srcCompat="@drawable/rectangle_1267" />
 
-    <TextView
-        android:id="@+id/Email1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="342dp"
-        android:layout_marginEnd="19dp"
-        android:fontFamily="@font/montserrat"
-        android:text="tanya.edwards@gmail.com"
-        android:textColor="#212530"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="413dp"
+            android:layout_height="76dp"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Phone"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        <ImageView
+            android:id="@+id/back1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
 
-    <TextView
-        android:id="@+id/Nomor1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/montserrat"
-        android:text="(239) 555-0108"
-        android:textColor="#212530"
-        app:layout_constraintEnd_toEndOf="@+id/Email1"
-        app:layout_constraintTop_toBottomOf="@+id/Email1" />
+        <TextView
+            android:id="@+id/profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="Profile"
+            android:textColor="#000000"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintEnd_toStartOf="@+id/editProfile"
+            app:layout_constraintStart_toEndOf="@+id/back1"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Date of birth"
-        app:layout_constraintStart_toStartOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        <ImageView
+            android:id="@+id/editProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_create_24" />
 
-    <TextView
-        android:id="@+id/Date1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/montserrat"
-        android:text="March 27, 1989"
-        android:textColor="#212530"
-        app:layout_constraintEnd_toEndOf="@+id/Nomor1"
-        app:layout_constraintTop_toBottomOf="@+id/Nomor1" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Address"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            <ImageView
+                android:id="@+id/fotoProfile"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_baseline_person" />
+        </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/Address1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/montserrat"
-        android:text="6391 Elgin St Celina, Delaware"
-        android:textColor="#212530"
-        app:layout_constraintEnd_toEndOf="@+id/Date1"
-        app:layout_constraintTop_toBottomOf="@+id/Date1" />
+        <TextView
+            android:id="@+id/namaAkun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/montserrat"
+            android:text="San Francisco, CA"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Password"
-        app:layout_constraintStart_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="342dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/Pw1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/montserrat"
-        android:text="********"
-        android:inputType="textPassword"
-        android:textColor="#212530"
-        app:layout_constraintEnd_toEndOf="@+id/Address1"
-        app:layout_constraintTop_toBottomOf="@+id/Address1" />
+        <TextView
+            android:id="@+id/Email1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="342dp"
+            android:layout_marginEnd="19dp"
+            android:fontFamily="@font/montserrat"
+            android:text="tanya.edwards@gmail.com"
+            android:textColor="#212530"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnSignOut"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="28dp"
-        android:backgroundTint="#3562D7"
-        android:fontFamily="@font/montserrat"
-        android:text="Sign Out"
-        android:textSize="16sp"
-        app:cornerRadius="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Phone"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="317dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rectangle_1267" />
+        <TextView
+            android:id="@+id/Nomor1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/montserrat"
+            android:text="(239) 555-0108"
+            android:textColor="#212530"
+            app:layout_constraintEnd_toEndOf="@+id/Email1"
+            app:layout_constraintTop_toBottomOf="@+id/Email1" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email1"
-        app:srcCompat="@drawable/rectangle_1267" />
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Date of birth"
+            app:layout_constraintStart_toStartOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="500dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Nomor1"
-        app:srcCompat="@drawable/rectangle_1267" />
+        <TextView
+            android:id="@+id/Date1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/montserrat"
+            android:text="March 27, 1989"
+            android:textColor="#212530"
+            app:layout_constraintEnd_toEndOf="@+id/Nomor1"
+            app:layout_constraintTop_toBottomOf="@+id/Nomor1" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Address"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/Address1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/montserrat"
+            android:text="6391 Elgin St Celina, Delaware"
+            android:textColor="#212530"
+            app:layout_constraintEnd_toEndOf="@+id/Date1"
+            app:layout_constraintTop_toBottomOf="@+id/Date1" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Password"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <TextView
+            android:id="@+id/Pw1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/montserrat"
+            android:text="********"
+            android:inputType="textPassword"
+            android:textColor="#212530"
+            app:layout_constraintEnd_toEndOf="@+id/Address1"
+            app:layout_constraintTop_toBottomOf="@+id/Address1" />
+
+        <Button
+            android:id="@+id/btnSignOut"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="28dp"
+            android:backgroundTint="#3562D7"
+            android:fontFamily="@font/montserrat"
+            android:text="Sign Out"
+            android:textSize="16sp"
+            app:cornerRadius="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="317dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/rectangle_1267" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Email1"
+            app:srcCompat="@drawable/rectangle_1267" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="500dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Nomor1"
+            app:srcCompat="@drawable/rectangle_1267" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
+
