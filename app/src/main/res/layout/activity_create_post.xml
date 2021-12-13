@@ -10,7 +10,7 @@
         android:id="@+id/createPostActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/montserrat_extra_bold"
         android:text="CreatePost"
         android:textAllCaps="false"
@@ -36,6 +36,7 @@
         android:paddingTop="20dp"
         android:paddingRight="28dp"
         android:paddingBottom="20dp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +55,7 @@
         android:minHeight="48dp"
         android:paddingLeft="28dp"
         android:paddingRight="28dp"
-        android:textSize="24dp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,13 +65,12 @@
         android:id="@+id/text_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="95dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Tanya Edwards"
         android:textColor="@color/black"
-        android:textSize="22dp"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cardView3"
         app:layout_constraintTop_toBottomOf="@+id/createPostActivity" />
@@ -79,21 +79,23 @@
         android:id="@+id/text_Location"
         android:layout_width="206dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
         android:background="@null"
         android:ems="10"
         android:fontFamily="@font/montserrat_bold"
         android:hint="Add location"
         android:inputType="textPersonName"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView16" />
+        app:layout_constraintTop_toBottomOf="@+id/text_Post" />
 
     <Button
         android:id="@+id/bt_post"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginLeft="42dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginRight="42dp"
         android:backgroundTint="#3562D7"
         android:fontFamily="@font/montserrat"
@@ -101,7 +103,7 @@
         android:textSize="16dp"
         app:cornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.602"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView12" />
 
@@ -109,8 +111,7 @@
         android:id="@+id/cardView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="16dp"
         app:cardCornerRadius="80dp"
         app:layout_constraintEnd_toStartOf="@+id/text_Name"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +129,6 @@
         android:layout_width="50dp"
         android:layout_height="48dp"
         app:layout_constraintEnd_toStartOf="@+id/text_Location"
-        app:layout_constraintHorizontal_bias="0.828"
         app:layout_constraintStart_toEndOf="@+id/img_photos"
         app:layout_constraintTop_toTopOf="@+id/img_photos"
         app:srcCompat="@drawable/ic_baseline_location_on_24" />
@@ -137,7 +137,7 @@
         android:id="@+id/imageView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="648dp"
+        android:layout_marginTop="612dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -160,17 +160,6 @@
         app:layout_constraintTop_toBottomOf="@+id/text_Post"
         app:srcCompat="@drawable/ic_baseline_image_24"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageView
-        android:id="@+id/imageView13"
-        android:layout_width="wrap_content"
-        android:layout_height="0.4dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView16"
-        app:srcCompat="@drawable/line3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

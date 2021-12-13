@@ -46,7 +46,7 @@
         android:id="@+id/cardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         app:cardCornerRadius="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -228,10 +228,12 @@
         app:layout_constraintTop_toBottomOf="@+id/checkBox3"
         app:layout_constraintVertical_bias="0.179" />
 
+
     <EditText
         android:id="@+id/editCP"
         android:layout_width="391dp"
         android:layout_height="55dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:fontFamily="@font/montserrat"
         android:hint="Confirm Password"
@@ -240,9 +242,9 @@
         android:paddingRight="24dp"
         android:textAlignment="textEnd"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/editPw"
-        tools:layout_editor_absoluteX="1dp" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editPw" />
 
     <TextView
         android:id="@+id/textCP"
@@ -261,8 +263,10 @@
         android:layout_marginTop="8dp"
         android:text="Show Password"
         android:textColor="#737373"
-        app:layout_constraintTop_toBottomOf="@+id/editCP"
-        tools:layout_editor_absoluteX="25dp" />
+        app:layout_constraintEnd_toEndOf="@+id/editCP"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editCP"
+        app:layout_constraintTop_toBottomOf="@+id/editCP" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

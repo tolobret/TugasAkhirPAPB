@@ -79,8 +79,8 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <LinearLayout
-        android:layout_width="396dp"
-        android:layout_height="452dp"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

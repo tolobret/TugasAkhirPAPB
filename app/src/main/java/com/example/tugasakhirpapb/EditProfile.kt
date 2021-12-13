@@ -45,6 +45,7 @@ class EditProfile : AppCompatActivity() {
     var filePath: Uri?= null
     lateinit var progressDialog: ProgressDialog
     var userId : String = ""
+    lateinit var editPassword : EditText
 
 
 
@@ -62,6 +63,7 @@ class EditProfile : AppCompatActivity() {
         btnBack = findViewById(R.id.back1)
         fotoProfile = findViewById(R.id.fotoProfile)
         val checkbox : CheckBox = findViewById(R.id.checkBox3)
+        editPassword = findViewById(R.id.editCP)
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -112,6 +114,42 @@ class EditProfile : AppCompatActivity() {
                 "password" to Pw
             )
 
+            if (!editPassword.text.isEmpty()){
+
+
+                if(editPassword.text.toString().equals(editPw.text.toString()) == false){
+                    editPassword.setError("Password not match")
+                    editPw.setError("Password not match")
+
+                }else{
+                    user!!.updatePassword(Pw)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Toast.makeText(baseContext,"Password Changed", Toast.LENGTH_SHORT).show()
+                                mAuth.signOut()
+                                val intent = Intent(this, Login::class.java)
+                                startActivity(intent)
+
+                                database.child(userId).updateChildren(update).addOnCompleteListener {
+                                    if(it.isSuccessful){
+                                        Toast.makeText(baseContext,"Succes to update profile", Toast.LENGTH_LONG).show()
+
+                                    }else{
+                                        Toast.makeText(baseContext,"Failed to update profile", Toast.LENGTH_SHORT).show()
+                                    }
+
+                                    if (filePath == null){
+                                        finish()
+                                    }
+                                }
+
+                            }
+                        }
+                }
+
+
+            }
+
 
             database.child(userId).updateChildren(update).addOnCompleteListener {
                 if(it.isSuccessful){
@@ -120,16 +158,11 @@ class EditProfile : AppCompatActivity() {
                 }else{
                     Toast.makeText(baseContext,"Failed to update profile", Toast.LENGTH_SHORT).show()
                 }
-            }
 
-            user!!.updatePassword(Pw)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-//                        Toast.makeText(baseContext,"Password Changed", Toast.LENGTH_SHORT).show()
-                    }
+                if (filePath == null){
+                    if (editPassword.text.isEmpty())
+                    finish()
                 }
-            if (filePath == null){
-                finish()
             }
 
 
@@ -138,9 +171,11 @@ class EditProfile : AppCompatActivity() {
         checkbox.setOnClickListener(){
             if (checkbox.isChecked){
                 editPw.inputType = 1
+                editPassword.inputType = 1
 
             }else{
                 editPw.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                editPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
 
             }
         }

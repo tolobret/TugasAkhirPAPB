@@ -17,6 +17,7 @@ import coil.transform.RoundedCornersTransformation
 import com.bumptech.glide.Glide
 import com.example.tugasakhirpapb.EditProfile
 import com.example.tugasakhirpapb.Login
+import com.example.tugasakhirpapb.MainActivity
 import com.example.tugasakhirpapb.R
 import com.example.tugasakhirpapb.databinding.ActivityProfileBinding
 import com.example.tugasakhirpapb.databinding.RecyclerViewBinding
@@ -88,6 +89,10 @@ class ProfileFragment : Fragment(R.layout.activity_profile) {
             val intent = Intent(context, EditProfile::class.java)
             startActivity(intent)
         }
+    btnBack.setOnClickListener(){
+        val intent = Intent(context, MainActivity::class.java)
+        startActivity(intent)
+    }
 
     btnSO.setOnClickListener(){
         mAuth.signOut()
