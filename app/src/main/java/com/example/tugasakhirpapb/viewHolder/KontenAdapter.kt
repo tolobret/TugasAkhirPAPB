@@ -34,16 +34,7 @@ class KontenAdapter(private val ImageUrl: List<String>,
 
     inner class ViewHolder(private val binding: KontenViewBinding, listener: onItemClickListener) : RecyclerView.ViewHolder(binding.root) {
         val judul : TextView = itemView.findViewById(R.id.textJudul)
-        fun bind(url: String) {
-            with(binding) {
-                imageKonten.load(url){
-                    crossfade(true)
-                    crossfade(500)
-                    transformations(RoundedCornersTransformation(10F))
-                }
-            }
 
-        }
         init {
             itemView.setOnClickListener{
                 listener.onItemClick(adapterPosition)

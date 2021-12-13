@@ -122,13 +122,11 @@ class EditProfile : AppCompatActivity() {
                     editPw.setError("Password not match")
 
                 }else{
+
                     user!!.updatePassword(Pw)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 Toast.makeText(baseContext,"Password Changed", Toast.LENGTH_SHORT).show()
-                                mAuth.signOut()
-                                val intent = Intent(this, Login::class.java)
-                                startActivity(intent)
 
                                 database.child(userId).updateChildren(update).addOnCompleteListener {
                                     if(it.isSuccessful){
@@ -138,9 +136,13 @@ class EditProfile : AppCompatActivity() {
                                         Toast.makeText(baseContext,"Failed to update profile", Toast.LENGTH_SHORT).show()
                                     }
 
-                                    if (filePath == null){
-                                        finish()
-                                    }
+
+                                mAuth.signOut()
+                                val intent = Intent(this, Login::class.java)
+                                startActivity(intent)
+
+
+
                                 }
 
                             }
@@ -148,23 +150,23 @@ class EditProfile : AppCompatActivity() {
                 }
 
 
-            }
+            }else{
 
+                database.child(userId).updateChildren(update).addOnCompleteListener {
+                    if(it.isSuccessful){
+                        Toast.makeText(baseContext,"Succes to update profile", Toast.LENGTH_LONG).show()
 
-            database.child(userId).updateChildren(update).addOnCompleteListener {
-                if(it.isSuccessful){
-                    Toast.makeText(baseContext,"Succes to update profile", Toast.LENGTH_LONG).show()
+                    }else{
+                        Toast.makeText(baseContext,"Failed to update profile", Toast.LENGTH_SHORT).show()
+                    }
 
-                }else{
-                    Toast.makeText(baseContext,"Failed to update profile", Toast.LENGTH_SHORT).show()
+                    if (filePath == null){
+                        if (editPassword.text.isEmpty())
+                            finish()
+                    }
                 }
 
-                if (filePath == null){
-                    if (editPassword.text.isEmpty())
-                    finish()
-                }
             }
-
 
         }
 
