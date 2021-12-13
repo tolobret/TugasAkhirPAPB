@@ -107,6 +107,7 @@ class EditProfile : AppCompatActivity() {
 
 
             var update = mapOf<String,String>(
+                "nama" to Nama,
                 "email" to Email,
                 "nomor" to No,
                 "tglLahir" to Tgl,
@@ -257,6 +258,7 @@ class EditProfile : AppCompatActivity() {
                 try {
                     Glide.with(this@EditProfile)
                         .load(Foto)
+                        .centerCrop()
                         .placeholder(R.drawable.profile_icon)
                         .into(fotoProfile)
                 }
