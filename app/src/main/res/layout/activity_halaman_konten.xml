@@ -62,17 +62,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_like" />
 
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop"666dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/line3" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bt_like"
         android:layout_width="wrap_content"
@@ -90,29 +79,29 @@
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="396dp"
+        android:layout_height="452dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_judul">
 
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            app:srcCompat="@drawable/line3" />
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="452dp"
+            android:layout_height="match_parent"
             tools:ignore="SpeakableTextPresentCheck">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imageView19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    app:srcCompat="@drawable/line3" />
 
                 <TextView
                     android:id="@+id/text_konten"
