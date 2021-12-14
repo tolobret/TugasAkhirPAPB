@@ -18,7 +18,7 @@
         <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/drawable/shape.xml" value="0.1" />
         <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_create_post.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_edit_profile.xml" value="0.22" />
-        <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_halaman_konten.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_halaman_konten.xml" value="0.12" />
         <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/Users/Diana Yap/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_profile.xml" value="0.14666666666666667" />
@@ -54,13 +54,10 @@
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_create_post.xml" value="0.33" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_edit_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_halaman_konten.xml" value="0.33" />
-        <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/activity_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/konten_view.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/navbar.xml" value="0.13240740740740742" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/recycler_view.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/register_activity.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/achma/AndroidStudioProjects/TugasAkhirPAPB/app/src/main/res/layout/start.xml" value="0.13240740740740742" />
       </map>
     </option>
   </component>
