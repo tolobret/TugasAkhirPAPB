@@ -101,8 +101,7 @@ class HalamanKonten : AppCompatActivity() {
         }
 
         btnBack.setOnClickListener {
-            val intent = Intent (this, CreateFragment::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 
