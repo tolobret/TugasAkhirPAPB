@@ -48,7 +48,7 @@ class ProfileFragment : Fragment(R.layout.activity_profile) {
     private val storageReference = FirebaseStorage.getInstance().getReference("ProfileImages")
     private lateinit var binding: ActivityProfileBinding
     private var pressedTime = 0L
-
+    private lateinit var userId : String
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
 //
@@ -75,7 +75,7 @@ class ProfileFragment : Fragment(R.layout.activity_profile) {
         btnBack = view.findViewById(R.id.back1)
 
         mAuth = FirebaseAuth.getInstance()
-        var userId : String = ""
+
         val user = mAuth.currentUser
         user?.let {
             userId = user.uid
@@ -122,12 +122,7 @@ class ProfileFragment : Fragment(R.layout.activity_profile) {
 
     private fun loadUserInfo() {
 
-        var userId : String = ""
-        val user = mAuth.currentUser
-        user?.let {
-            userId = user.uid
-        }
-//        downloadImage(userId)
+
         database = FirebaseDatabase.getInstance().getReference("userData")
         database.child(userId).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -139,14 +134,12 @@ class ProfileFragment : Fragment(R.layout.activity_profile) {
                 var Alamat = "${snapshot.child("alamat").value}"
                 val Password = "${snapshot.child("password").value}"
 
-                nama.text = Nama.toString()
-                email.text = Email.toString()
-                nomor.text = Nomor.toString()
-                tanggal.text = Tanggal.toString()
-                alamat.text = Alamat.toString()
-                password.text = Password.toString()
-
-
+                nama.text = Nama
+                email.text = Email
+                nomor.text = Nomor
+                tanggal.text = Tanggal
+                alamat.text = Alamat
+                password.text = Password
 
 
                 try {

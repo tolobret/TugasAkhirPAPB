@@ -49,17 +49,11 @@ class HalamanKonten : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        auth = Firebase.auth
-        val currentUser = auth.currentUser
+
         binding = ActivityHalamanKontenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        setContentView(R.layout.activity_halaman_konten)
         database = FirebaseDatabase.getInstance().getReference()
-
-
         var clicked : Boolean = false
-
         textJudul = findViewById(R.id.text_judul)
         textKonten = findViewById(R.id.text_konten)
         textLokasi = findViewById(R.id.text_lokasi)
@@ -68,6 +62,8 @@ class HalamanKonten : AppCompatActivity() {
         btLike = findViewById(R.id.bt_like)
         btnBack = findViewById(R.id.backBtn)
 
+
+//        Get String Data From Intent
 
         val bundle : Bundle?=intent.extras
         judul = bundle!!.getString("judul").toString()
@@ -87,7 +83,7 @@ class HalamanKonten : AppCompatActivity() {
                 )
 
                 database.child("konten").child(judul).updateChildren(like).addOnSuccessListener {
-                    Toast.makeText(this,"liked",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Liked",Toast.LENGTH_SHORT).show()
                     clicked=true
                     database.child("konten").child(judul).get().addOnSuccessListener {
                         textLike.text="${it.child("like_count").value}"

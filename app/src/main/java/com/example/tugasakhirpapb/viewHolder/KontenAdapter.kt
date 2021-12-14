@@ -53,7 +53,8 @@ class KontenAdapter(private val ImageUrl: List<String>,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         ImageUrl[position].let {
-//            holder.bind(it)
+
+
 
             try {
                 Glide.with(holder.itemView)

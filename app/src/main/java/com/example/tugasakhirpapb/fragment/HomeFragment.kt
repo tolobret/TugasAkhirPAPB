@@ -52,7 +52,7 @@ class HomeFragment : Fragment(R.layout.recycler_view) {
         val view =  inflater.inflate(R.layout.recycler_view, container, false)
 
         kontenArrayList = arrayListOf<Konten>()
-        getUserData()
+        getKonten()
         getAllImage()
 
         val callback= object : OnBackPressedCallback(true){
@@ -117,7 +117,7 @@ class HomeFragment : Fragment(R.layout.recycler_view) {
     }
 
 
-    private fun getUserData() {
+    private fun getKonten() {
 
         database = FirebaseDatabase.getInstance().getReference("konten")
 

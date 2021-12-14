@@ -9,6 +9,5 @@ data class userData(
     val alamat: String? = "",
     val nomor: String? = "",
     val fotoProfil: String? = null,
-    val akunUser: String?=null,
                      ) {
 }
