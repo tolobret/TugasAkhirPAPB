@@ -152,7 +152,9 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/img_konten"
             app:layout_constraintTop_toTopOf="@+id/img_konten"
-            app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
+            app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+            android:elevation="20dp"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
