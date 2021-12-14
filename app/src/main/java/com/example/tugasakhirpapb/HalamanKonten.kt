@@ -8,10 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.ContextCompat
 import coil.load
 import coil.transform.RoundedCornersTransformation
@@ -25,6 +22,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.bumptech.glide.Glide
 import com.example.tugasakhirpapb.databinding.ActivityHalamanKontenBinding
+import com.example.tugasakhirpapb.fragment.CreateFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
@@ -40,6 +38,7 @@ class HalamanKonten : AppCompatActivity() {
     lateinit var textLike : TextView
     lateinit var imgCreatePost : ImageView
     lateinit var btLike : FloatingActionButton
+    lateinit var btnBack : ImageButton
      var imgName: String = ""
     lateinit var imgKonten : ImageView
     private lateinit var auth: FirebaseAuth
@@ -67,6 +66,7 @@ class HalamanKonten : AppCompatActivity() {
         textLike = findViewById(R.id.text_like)
         imgKonten = findViewById(R.id.img_konten)
         btLike = findViewById(R.id.bt_like)
+        btnBack = findViewById(R.id.backBtn)
 
 
         val bundle : Bundle?=intent.extras
@@ -98,6 +98,11 @@ class HalamanKonten : AppCompatActivity() {
             }else{
                 Toast.makeText(this,"You've Liked This Post",Toast.LENGTH_SHORT).show()
             }
+        }
+
+        btnBack.setOnClickListener {
+            val intent = Intent (this, CreateFragment::class.java)
+            startActivity(intent)
         }
     }
 

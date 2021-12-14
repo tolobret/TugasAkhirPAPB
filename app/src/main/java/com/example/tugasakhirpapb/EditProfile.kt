@@ -67,7 +67,6 @@ class EditProfile : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
-
         progressDialog = ProgressDialog(this)
         progressDialog.setTitle("Tunggu")
         progressDialog.setCanceledOnTouchOutside(false)
